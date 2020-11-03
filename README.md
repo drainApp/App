@@ -1,9 +1,9 @@
 App
 
 1 
-to install npm
+install npm
 `npm install`
 
 2 
-to run App
+run App
 `npm start`
