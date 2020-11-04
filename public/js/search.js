@@ -41,3 +41,5 @@ var input_text = input.value
 }
 
 
+localStorage.setItem('fly',false)
+localStorage.setItem('room',false)

@@ -7,26 +7,27 @@ const cors = require("cors");
 const helmet = require("helmet");
 var ip = require("ip");
 
-console.dir ( ip.address() );
+console.dir (ip.address());
 console.log(ip.address())
 
-app.use('/css',express.static(__dirname + '/css'));
-app.use('/js',express.static(__dirname + '/js'));
-app.use('/assets',express.static(__dirname + '/assets'));
+//::1은 IpV6에서 로컬 호스트
+
+//app.use('/css',express.static(__dirname + '/css'));
+//app.use('/js',express.static(__dirname + '/js'));
+//app.use('/assets',express.static(__dirname + '/assets'));
 app.use(helmet());
 app.use(morgan("dev"));
 app.use(cors());
-app.use(express.static("public"));
 
-app.get('/',function(req,res){
-	// var ip = 
-	// req.headers['x-forwarded-for'] ||
-    // req.connection.remoteAddress ||
-    // req.socket.remoteAddress ||
-    // req.connection.socket.remoteAddress;
-	// console.log(ip)
-	res.sendFile(__dirname+'/public/index.html');
+app.get("/", function (req, res, next) {
+	//'192.168.35.193'
+	//var ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress;
+	//console.log(ip); 
+	next();
+	//res.sendFile(__dirname+'/public/index.html');
 });
+
+app.use(express.static("public"));
 
 
 app.use(express.urlencoded({ extended: true, limit: "30mb" }));
@@ -35,54 +36,54 @@ app.set("view engine", "html");
 
 
 const dotenv = require("dotenv");
-const connectDB = require("./lib/connectDB");
+//const connectDB = require("./lib/connectDB");
 
 dotenv.config();
 
 const port = Number(process.env.PORT) || 4444;
 
-connectDB();
+//connectDB();
 
 http.listen(port, () => console.log(`http://localhost:${port}`)).on("error", (err) => console.error(err));
 
 
 //나주엥 파일 분리 해주세요
-io.on("connection", (socket) => {
-	var mainroom = []
-	var fly=true
-	var roomescapeclear=true
+// io.on("connection", (socket) => {
+// 	var mainroom = []
+// 	var fly=true
+// 	var roomescapeclear=true
 
-	console.log("a user connected");
+// 	console.log("a user connected");
 
-	socket.on("identify", (obj) => {
-		var id = obj.socketid
-		//this.mainroom.push({id})
-		if(obj.name=="maingame"){
-			io.to(id).emit("data",{
-				"fly" : fly,
-				"roomescapeclear" : roomescapeclear
-			})
-		}
-	});
+// 	socket.on("identify", (obj) => {
+// 		var id = obj.socketid
+// 		//this.mainroom.push({id})
+// 		if(obj.name=="maingame"){
+// 			io.to(id).emit("data",{
+// 				"fly" : fly,
+// 				"roomescapeclear" : roomescapeclear
+// 			})
+// 		}
+// 	});
 
-	socket.on("fly",()=>{
-		fly=true
-		socket.emit('fly')
-	})
+// 	socket.on("fly",()=>{
+// 		fly=true
+// 		socket.emit('fly')
+// 	})
 
-	socket.on("roomescapeclear",()=>{
-		roomescapeclear=true
-		console.log('r')
-		socket.emit('roomescapeclear')
-	})
+// 	socket.on("roomescapeclear",()=>{
+// 		roomescapeclear=true
+// 		console.log('r')
+// 		socket.emit('roomescapeclear')
+// 	})
 
-	//socket.on("disconnect", (data) => [userlist.deleteUser(socket.id)]);
+// 	//socket.on("disconnect", (data) => [userlist.deleteUser(socket.id)]);
 
 
-	console.log(socket.id);
+// 	console.log(socket.id);
 
-	socket.on("chat message", (json) => {
-		io.to(socket.id).emit("chat message", json.chat);
-	});
+// 	socket.on("chat message", (json) => {
+// 		io.to(socket.id).emit("chat message", json.chat);
+// 	});
 
-});
+// });

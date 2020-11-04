@@ -127,9 +127,13 @@ function GameEnd(_door){
         game.add.text(1500, 280, "He's gone", { font: "24px Arial", fill: "#ffffff", align: "center"});
     }
 
-    this.socket.emit("roomescapeclear",()=>{
-        console.log("roomescapeclear")
-    })
+    console.log(localStorage.getItem('room'))
+    localStorage.setItem('room',true)
+    console.log(localStorage.getItem('room'))
+
+    // this.socket.emit("roomescapeclear",()=>{
+    //     console.log("roomescapeclear")
+    // })
 
 }
 function DrawerChange(_gagu){
@@ -366,7 +370,7 @@ var play = {
         score = 0;
         game.input.mouse.capture = true;
         
-        this.socket=io()
+        // this.socket=io()
 
     },
     update : function(){
