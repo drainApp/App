@@ -131,10 +131,6 @@ function GameEnd(_door){
     localStorage.setItem('room',true)
     console.log(localStorage.getItem('room'))
 
-    // this.socket.emit("roomescapeclear",()=>{
-    //     console.log("roomescapeclear")
-    // })
-
 }
 function DrawerChange(_gagu){
     console.log(_gagu.key)
@@ -370,7 +366,6 @@ var play = {
         score = 0;
         game.input.mouse.capture = true;
         
-        // this.socket=io()
 
     },
     update : function(){

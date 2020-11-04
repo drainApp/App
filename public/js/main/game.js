@@ -205,29 +205,6 @@ var play = {
         game.camera.follow(player.sprite);
         score = 0;
         game.input.mouse.capture = true;
-    //     this.socket=io()
-    //     this.socket.on("fly",()=>{
-    //         fly=true
-    //         console.log("fly")
-    //         console.log("fly")
-    //     })
-    //     this.socket.on("roomescapeclear",()=>{
-    //         roomescapeclear=true
-    //         console.log("roomescapeclear")
-    //         console.log("roomescapeclear")
-    //     })
-    //     this.socket.on('connect', () => {
-    //         console.log("maingame socket on")
-    //         var json = {
-    //         'name':'maingame',
-    //         'socketid' : this.socket.id
-    //     }
-    //         this.socket.emit('identify', json);
-    //   });
-    //   this.socket.on("data",obj=>{
-    //       fly = obj.fly
-    //       roomescapeclear = obj.roomescapeclear
-    //   })
       
     },
     update : function(){
