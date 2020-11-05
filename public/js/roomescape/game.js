@@ -369,13 +369,13 @@ var play = {
 
     },
     update : function(){
-        if(music == null)
-        {
-        console.log("music on");
-        music = game.add.audio('bgm');
-        music.volume = 0.5;
-        music.play();
-        }
+        // if(music == null)
+        // {
+        // console.log("music on");
+        // music = game.add.audio('bgm');
+        // music.volume = 0.5;
+        // music.play();
+        // }
         if(itemDragOn[0] == false){
             if(itemUSB != null)
                 game.physics.arcade.collide(itemUSB.sprite, PC.sprite, USBOn, null, this);

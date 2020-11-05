@@ -6,7 +6,7 @@ var scoreText;
 class Player {
     constructor(){
         this.setBG = 0;
-        this.sprite = game.add.sprite(800, 1900, "player"); 
+        this.sprite = game.add.sprite(500, 2000, "player"); 
         this.sprite.anchor.setTo(0.5, 0.5);
         game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
         this.key = game.input.keyboard.createCursorKeys();
