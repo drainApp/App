@@ -40,50 +40,9 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-const port = Number(process.env.PORT) || 4444;
+const port = Number(process.env.PORT) || 80;
 
 //connectDB();
 
 http.listen(port, () => console.log(`http://localhost:${port}`)).on("error", (err) => console.error(err));
 
-
-//나주엥 파일 분리 해주세요
-// io.on("connection", (socket) => {
-// 	var mainroom = []
-// 	var fly=true
-// 	var roomescapeclear=true
-
-// 	console.log("a user connected");
-
-// 	socket.on("identify", (obj) => {
-// 		var id = obj.socketid
-// 		//this.mainroom.push({id})
-// 		if(obj.name=="maingame"){
-// 			io.to(id).emit("data",{
-// 				"fly" : fly,
-// 				"roomescapeclear" : roomescapeclear
-// 			})
-// 		}
-// 	});
-
-// 	socket.on("fly",()=>{
-// 		fly=true
-// 		socket.emit('fly')
-// 	})
-
-// 	socket.on("roomescapeclear",()=>{
-// 		roomescapeclear=true
-// 		console.log('r')
-// 		socket.emit('roomescapeclear')
-// 	})
-
-// 	//socket.on("disconnect", (data) => [userlist.deleteUser(socket.id)]);
-
-
-// 	console.log(socket.id);
-
-// 	socket.on("chat message", (json) => {
-// 		io.to(socket.id).emit("chat message", json.chat);
-// 	});
-
-// });

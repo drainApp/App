@@ -36,7 +36,7 @@ class Crow{
 class TextPanel{
     constructor(a){
         this.sprite = game.add.sprite(0, 600, "textPanel");
-        this.style = { font: "30px Arial", fill: "#ff0044", wordWrap: true, wordWrapWidth: this.sprite.width, align: "center" };
+        this.style = { font: "22px Arial", fill: "#ff0044", wordWrap: true, wordWrapWidth: this.sprite.width, align: "center" };
         this.text = game.add.text(game.camera.x+600, 750, textMessage[a], this.style);
         this.text.anchor.set(0.5);
         this.num = a;
@@ -58,6 +58,7 @@ class TextPanel{
 
     }
     changeText(n){
+        player.sprite.body.velocity.x = 0;
         console.log("ct");
         this.text.setText(textMessage[n]);
         this.num = n;
@@ -82,6 +83,15 @@ function Npc1Collision (_pc, _npc){
         case "PeopleSit":
             textpanel.changeText(13);
             break;
+        case "EV":
+            textpanel.changeText(9);
+            break;
+        case "SOK":
+                textpanel.changeText(32);
+                break;
+        case "SOK_NULL":
+                textpanel.changeText(29);
+                break;
 
     }
 }
@@ -97,7 +107,7 @@ var textMessage = new Array(
 , "(책상엔 같은 캔이 여러 개 놓여있다. . .)"
 , ""
 , "(엘리베이터는 작동하지 않는다.)" //9
-, "(들어오는 사람은 있어도 나가는 사람은 없기 때문이다.)"
+, "(근무시간에 들어오는 사람은 있어도 나가는 사람은 없기 때문이다.)"
 , "(다른 출구를 찾아보자. . .)"
 , ""
 , "(그들은 쉴 틈 없이 일하고 있다.)" //13
@@ -113,9 +123,13 @@ var textMessage = new Array(
 , "\"저는 결국 용기가 부족해 나가지 못했지만, 당신이라면 할 수 있을거에요.\""
 , "(그 말을 끝으로, 그는 다시 자신의 할 일에 열중하기 시작했다.)"
 , ""
-, "" // 26
+, "(그는 창 밖으로 자신의 몸을 던지고 싶었으나,)" // 26
+, "(아쉽게도 그는 '새'가 아니었다.)"
 , ""
+, "(붉은 집의 문은 굳게 닫혀 있고, 초인종도 보이지 않는다.)" //29
+, "(안에서 문을 열고 나올 때까지 기다려야 할 것 같다.)"
 , ""
+, "모콘 예선은 여기까지입니다."  // 32
 )
 
 var npc1;
@@ -143,9 +157,11 @@ let slideButton;
 let rerollButton;
 let trash;
 let npc;
+var bg;
 var stopTime;
 var crow = [];
 var crowOn = false;
+var sokOn = false;
 let random3;
 
 
@@ -155,6 +171,8 @@ var roomescapeclear = localStorage.getItem('room')
 var play = {
     create : function(){
         game.physics.startSystem(Phaser.Physics.ARCADE);
+        bg = game.add.sprite(1400, 2295, 'BG');
+        bg.scale.x = 2.5; bg.scale.y = 2.5;
         stopTime = game.time.now;
         canJump = true;
         trash = game.add.group();
@@ -181,6 +199,7 @@ var play = {
         h0.body.immovable = true;
         h1.body.immovable = true;
         h2.body.immovable = true;
+        npc.create(340, 1974, 'EV');
         npc.create(450, 1974, 'Table');
         npc.create(600, 1978, 'PeopleSit');
         npc.create(750, 1978, 'PeopleSit');
@@ -208,14 +227,15 @@ var play = {
       
     },
     update : function(){
-    
-        if(music == null)
-        {
-        console.log("music on");
-        music = game.add.audio('bgm');
-        music.volume = 0.5;
-        music.play();
-        }
+        fly = localStorage.getItem('fly')
+        roomescapeclear = localStorage.getItem('room')
+        // if(music == null)
+        // {
+        // console.log("music on");
+        // music = game.add.audio('bgm');
+        // music.volume = 0.5;
+        // music.play();
+        // }
        player.update();
        textpanel.sprite.x = game.camera.x;
        textpanel.text.x = game.camera.x+600;
@@ -245,13 +265,21 @@ var play = {
             lastTextTime = game.time.now;
             textpanel.destructor();
        }
-        // if(player.sprite.x > 1350 && player.sprite.body.velocity.x > 0 && true) // 까마귀 올라갓으면
-        //      player.sprite.body.velocity.x = 0;
-        if(true && !crowOn){
+         if(player.sprite.x > 1380 && player.sprite.body.velocity.x > 0 && fly != 'true'){ // 까마귀 올라갓으면
+              player.sprite.body.velocity.x = 0;
+              if(textpanel.text.text == '')
+                textpanel.changeText(26);
+
+         }
+        if(fly == 'true' && !crowOn){
             for(var i =0 ; i< crow.length ; i++){
                 crow[i].sprite.y = 2000 + (i*200);
             }
             crowOn = true;
+        }
+        if(roomescapeclear == 'true' && !sokOn){ // RoomEscape
+            npc.create(3000, 200, 'SOK');
+            sokOn = true;
         }
        game.physics.arcade.collide(player.sprite, platforms);
        game.physics.arcade.collide(player.sprite, npc, Npc1Collision, null, this);
