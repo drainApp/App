@@ -16,7 +16,7 @@ class Player {
         this.moveSpeed= 200;
         this.jumpSpeed= -350;
         this.isJumping = false;
-        this.sprite.body.gravity.y = 800;
+        this.sprite.body.gravity.y = 900;
         this.sprite.body.collideWorldBounds = true;
     }
     update() {
@@ -36,8 +36,10 @@ class Crow{
 class TextPanel{
     constructor(a){
         this.sprite = game.add.sprite(0, 600, "textPanel");
-        this.style = { font: "22px Arial", fill: "#ff0044", wordWrap: true, wordWrapWidth: this.sprite.width, align: "center" };
+        this.style = { font: "22px Arial", fill: "#909099", wordWrap: true, wordWrapWidth: this.sprite.width, align: "center" };
+        this.style2 = { font: "7px Arial", fill: "#909099", wordWrap: true, wordWrapWidth: this.sprite.width, align: "center" };
         this.text = game.add.text(game.camera.x+600, 750, textMessage[a], this.style);
+        this.text2 = game.add.text(game.camera.x+900, 800, 'press Z..', this.style);
         this.text.anchor.set(0.5);
         this.num = a;
     }
@@ -50,14 +52,22 @@ class TextPanel{
             //this.text = game.add.text(game.camera.x+400, 750, textMessage[this.num+1], this.style);
             this.num = this.num+1;
             if(textMessage[this.num]=="")
-                canTalk= false;
+                {
+                    console.log("check");
+                    canTalk= false;
+                    this.text2.text = '';
+                }
+            else
+                this.text2.text = 'press Z..';
         }
         else{
             canTalk = true;
+            
         }
 
     }
     changeText(n){
+        this.text2.text = 'press Z..';
         player.sprite.body.velocity.x = 0;
         console.log("ct");
         this.text.setText(textMessage[n]);
@@ -129,7 +139,8 @@ var textMessage = new Array(
 , "(붉은 집의 문은 굳게 닫혀 있고, 초인종도 보이지 않는다.)" //29
 , "(안에서 문을 열고 나올 때까지 기다려야 할 것 같다.)"
 , ""
-, "모콘 예선은 여기까지입니다."  // 32
+, "디콘 예선은 여기까지입니다."  // 32
+, ""
 )
 
 var npc1;
@@ -156,6 +167,7 @@ let jumpButton;
 let slideButton;
 let rerollButton;
 let trash;
+var sok;
 let npc;
 var bg;
 var stopTime;
@@ -171,7 +183,7 @@ var roomescapeclear = localStorage.getItem('room')
 var play = {
     create : function(){
         game.physics.startSystem(Phaser.Physics.ARCADE);
-        bg = game.add.sprite(1400, 2295, 'BG');
+        bg = game.add.sprite(1400, 2292, 'BG');
         bg.scale.x = 2.5; bg.scale.y = 2.5;
         stopTime = game.time.now;
         canJump = true;
@@ -187,7 +199,7 @@ var play = {
         // game.scale.pageAlignHorizontally = true;
         // game.scale.pageAlignVertically = true;
         game.stage.backgroundColor = "#1c242e";
-        game.world.setBounds(0, 0, 222222, 4000);
+        game.world.setBounds(0, 0, 3200, 4000);
         trash.create(334, 1806, 'building3');
         let h1= platforms.create(100, 200, 'building1');
         let h2= platforms.create(100, 1806, 'building2');
@@ -199,16 +211,17 @@ var play = {
         h0.body.immovable = true;
         h1.body.immovable = true;
         h2.body.immovable = true;
+        sok = npc.create(3000, 2730, 'SOK_NULL');
         npc.create(340, 1974, 'EV');
         npc.create(450, 1974, 'Table');
         npc.create(600, 1978, 'PeopleSit');
         npc.create(750, 1978, 'PeopleSit');
         npc.create(900, 1974, 'NPC1');
         npc.create(1050, 1978, 'PeopleSit');
-        crow[0]= new Crow(1650, 200);
-        crow[1]= new Crow(1750, 200);
-        crow[2]= new Crow(1850, 200);
-        crow[3]= new Crow(1950, 200);
+        crow[0]= new Crow(1550, 200);
+        crow[1]= new Crow(1650, 200);
+        crow[2]= new Crow(1750, 200);
+        crow[3]= new Crow(1850, 200);
         game.physics.enable(npc, Phaser.Physics.ARCADE);
         for(let i = 0; i< npc.length ; i++){
             npc.children[i].body.immovable = true;
@@ -219,6 +232,7 @@ var play = {
         }
         npc.enableBody = true;
         player = new Player();
+        player.sprite.body.setSize(44, 102, 0, 0);
         textpanel = new TextPanel(0);
         player.sprite.animations.play('move');
         game.camera.follow(player.sprite);
@@ -239,8 +253,10 @@ var play = {
        player.update();
        textpanel.sprite.x = game.camera.x;
        textpanel.text.x = game.camera.x+600;
+       textpanel.text2.x = game.camera.x+950;
        textpanel.sprite.y = game.camera.y + 500;
        textpanel.text.y = game.camera.y + 580;
+       textpanel.text2.y = game.camera.y + 630;
        if(textpanel.text.text == ""){
         if(player.key.right.isDown ){
            player.sprite.body.velocity.x = player.moveSpeed;
@@ -255,11 +271,11 @@ var play = {
         }
         }
 
-        if(player.jumpKey.isDown ){
-            console.log("JUMP");
-            player.sprite.body.y -= 5;
-            player.sprite.body.velocity.y = -400;
-            }
+        // if(player.jumpKey.isDown ){
+        //     console.log("JUMP");
+        //     player.sprite.body.y -= 5;
+        //     player.sprite.body.velocity.y = -400;
+        //     }
        //game.input.activePointer.leftButton.isDown
        if(player.talkKey.downDuration(25)&& lastTextTime+50 < game.time.now){
             lastTextTime = game.time.now;
@@ -273,12 +289,13 @@ var play = {
          }
         if(fly == 'true' && !crowOn){
             for(var i =0 ; i< crow.length ; i++){
-                crow[i].sprite.y = 2000 + (i*200);
+                crow[i].sprite.y = 2150 + (i*200);
             }
             crowOn = true;
         }
         if(roomescapeclear == 'true' && !sokOn){ // RoomEscape
-            npc.create(3000, 200, 'SOK');
+            sok.loadTexture('SOK', 0);
+            
             sokOn = true;
         }
        game.physics.arcade.collide(player.sprite, platforms);
