@@ -14,7 +14,7 @@ var Main = {
         game.load.image("Monitor", "./assets/roomescape/Monitor.png");
         game.load.image("Monitor_Die", "./assets/roomescape/Monitor_Die.png");
         game.load.image("USB", "./assets/roomescape/USB.png");
-        game.load.image("KEY", "./assets/roomescape/Key.png");
+        game.load.image("KEY", "./assets/roomescape/KEY.png");
         game.load.image("Door", "./assets/roomescape/Door.png");
         game.load.image("Door_Open", "./assets/roomescape/Door_Open.png");
         game.load.image("GoldGo", "./assets/roomescape/GoldGo.png");
