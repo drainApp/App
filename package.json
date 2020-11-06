@@ -1,32 +1,32 @@
 {
-	"name": "drain_tem_server",
-	"version": "1.0.0",
-	"description": "drain_tem_server",
-	"main": "app.js",
-	"dependencies": {
-		"cors": "^2.8.5",
-		"dotenv": "^8.2.0",
-		"express": "^4.17.1",
-		"helmet": "^4.2.0",
-		"html": "^1.0.0",
-		"ip": "^1.1.5",
-		"mongoose": "^5.10.11",
-		"morgan": "^1.10.0",
-		"socket.io": "^2.3.0"
-	},
-	"devDependencies": {},
-	"scripts": {
-		"start": "node ./src/app.js",
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/rlapo213/drain_tem_server.git"
-	},
-	"author": "",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/rlapo213/drain_tem_server/issues"
-	},
-	"homepage": "https://github.com/rlapo213/drain_tem_server#readme"
+  "name": "App",
+  "version": "1.0.0",
+  "description": "App",
+  "main": "app.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^4.2.0",
+    "html": "^1.0.0",
+    "ip": "^1.1.5",
+    "morgan": "^1.10.0",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node ./src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drainApp/App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/drainApp/App/issues"
+  },
+  "homepage": "https://github.com/drainApp/App#readme"
 }
