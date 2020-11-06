@@ -56,6 +56,8 @@ class TextPanel{
                     console.log("check");
                     canTalk= false;
                     this.text2.text = '';
+                    textpanel.sprite.scale.x = 0;
+                    textpanel.sprite.scale.y = 0;
                 }
             else
                 this.text2.text = 'press Z..';
@@ -68,6 +70,8 @@ class TextPanel{
     }
     changeText(n){
         this.text2.text = 'press Z..';
+        textpanel.sprite.scale.x = 1;
+        textpanel.sprite.scale.y = 1;
         player.sprite.body.velocity.x = 0;
         console.log("ct");
         this.text.setText(textMessage[n]);
