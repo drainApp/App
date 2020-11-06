@@ -125,11 +125,11 @@ function DoorOn(_key, _door){
 function GameEnd(_door){
     if(endText == null && _door.key == "Door_Open"){
         game.add.text(1500, 280, "He's gone", { font: "24px Arial", fill: "#ffffff", align: "center"});
+        console.log(localStorage.getItem('room'))
+        localStorage.setItem('room',true)
+        console.log(localStorage.getItem('room'))
     }
 
-    console.log(localStorage.getItem('room'))
-    localStorage.setItem('room',true)
-    console.log(localStorage.getItem('room'))
 
 }
 function DrawerChange(_gagu){
