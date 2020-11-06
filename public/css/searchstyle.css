@@ -11,8 +11,12 @@ body {
 }
 
 .mobile{
-    visibility: hidden;
+    display: none;
 }
+.mobiletext{
+    padding:20px;
+}
+
 .searchbox {
     position: absolute;
     top: 7vh;
@@ -87,18 +91,23 @@ body {
 
 @media (max-width: 768px) {
     .mobile{
-        visibility: visible;
         display: flex;
         width: 100vw;
         height: 100vh;
         align-items: center;
         justify-content: center;
-        z-index: 10000;
+        
     }
     .laptop{
         display: none;
     }
     .mobiletext{
-        font-size: 44px;
+        font-size: 26px;
+    }
+}
+
+@media (max-width:600px){
+    .mobiletext{
+        font-size: 18px;
     }
 }
