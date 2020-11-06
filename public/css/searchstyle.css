@@ -6,10 +6,13 @@ body {
     height: 100vh;
     background-image: url('../assets/search/background.png');
     background-size: cover;
-    /* user-select: none;
-    overflow: hidden; */
+    user-select: none;
+    overflow: hidden;
 }
 
+.mobile{
+    visibility: hidden;
+}
 .searchbox {
     position: absolute;
     top: 7vh;
@@ -80,4 +83,22 @@ body {
 .dot{
     color: #b12a38;
     margin-right: 4px;
+}
+
+@media (max-width: 768px) {
+    .mobile{
+        visibility: visible;
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+    }
+    .laptop{
+        display: none;
+    }
+    .mobiletext{
+        font-size: 44px;
+    }
 }
