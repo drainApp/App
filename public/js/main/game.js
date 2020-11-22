@@ -101,10 +101,10 @@ function Npc1Collision (_pc, _npc){
             textpanel.changeText(9);
             break;
         case "SOK":
-                textpanel.changeText(32);
+                textpanel.changeText(34);
                 break;
         case "SOK_NULL":
-                textpanel.changeText(29);
+                textpanel.changeText(30);
                 break;
 
     }
@@ -139,11 +139,13 @@ var textMessage = new Array(
 , ""
 , "(그는 창 밖으로 자신의 몸을 던지고 싶었으나,)" // 26
 , "(아쉽게도 그는 '새'가 아니었다.)"
+, "('까마귀' 키워드가 해금되었습니다.)"
 , ""
-, "(붉은 집의 문은 굳게 닫혀 있고, 초인종도 보이지 않는다.)" //29
+, "(붉은 집의 문은 굳게 닫혀 있고, 초인종도 보이지 않는다.)" //30
 , "(안에서 문을 열고 나올 때까지 기다려야 할 것 같다.)"
+, "('붉은지붕' 키워드가 해금되었습니다.)"
 , ""
-, "디콘 예선은 여기까지입니다."  // 32
+, "디콘 예선은 여기까지입니다."  // 34
 , ""
 )
 
