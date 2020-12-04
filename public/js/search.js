@@ -39,7 +39,16 @@ var input_text = input.value
     input.value=""
 
 }
-
+var searchCheck = setInterval(
+    function a(){
+        if(localStorage.getItem('redRoof') == 'true'){
+            document.getElementById("redRoof").innerHTML = "3 붉은 지붕"
+        }
+        if(localStorage.getItem('crow') == 'true'){
+            document.getElementById("crow").innerHTML = "2 까마귀"
+        }
+    }, 2000
+);
 
 localStorage.setItem('fly',false)
 localStorage.setItem('room',false)

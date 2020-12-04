@@ -245,7 +245,14 @@ var play = {
         game.camera.follow(player.sprite);
         score = 0;
         game.input.mouse.capture = true;
-      
+        if(music == null)
+        {
+        console.log("music on");
+        music = game.add.audio('bgm');
+        music.volume = 0.5;
+        music.loop = true;
+        music.play();
+        }
     },
     update : function(){
         fly = localStorage.getItem('fly')
@@ -316,6 +323,4 @@ var play = {
 
 
 
-
-
-    game.state.add("Play", play);
+game.state.add("Play", play);
