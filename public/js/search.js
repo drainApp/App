@@ -52,3 +52,5 @@ var searchCheck = setInterval(
 
 localStorage.setItem('fly',false)
 localStorage.setItem('room',false)
+localStorage.setItem('redRoof',false)
+localStorage.setItem('crow',false)

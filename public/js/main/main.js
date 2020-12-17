@@ -6,7 +6,7 @@ var Main = {
         game.load.image("ground", "./assets/main/Ground.png");
         game.load.image("NoCard", "./assets/main/NoCard.png");
         game.load.image("EV", "./assets/main/EV.png");
-        game.load.audio("bgm", "./assets/main/Baek Hwa Jeom.mp3");
+        game.load.audio("bgm", "./assets/main/BaekHwaJeom.mp3");
         //
         game.load.image("BG", "./assets/main/map/BG.png");
         game.load.image("building1", "./assets/main/map/top.png");

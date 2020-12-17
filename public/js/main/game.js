@@ -218,7 +218,7 @@ var play = {
         h0.body.immovable = true;
         h1.body.immovable = true;
         h2.body.immovable = true;
-        sok = npc.create(3000, 2730, 'SOK_NULL');
+        sok = npc.create(3050, 2730, 'SOK_NULL');
         npc.create(340, 1974, 'EV');
         npc.create(450, 1974, 'Table');
         npc.create(600, 1978, 'PeopleSit');
