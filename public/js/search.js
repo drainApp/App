@@ -30,7 +30,13 @@ var input_text = input.value
         case '붉은지붕':
             window.open('roomescape.html')
             break;
-  
+
+        case "환경 설정":
+        case '환경 설정':
+        case "환경설정": 
+        case '환경설정':
+            window.open('configuration.html')
+            break;
     
         default:
             break;
