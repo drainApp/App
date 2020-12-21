@@ -1,318 +1,25 @@
-var game = new Phaser.Game(1200 , 700, Phaser.CANVAS, "GameDiv");
+var game = new Phaser.Game(1200 , 1200, Phaser.CANVAS, "GameDiv");
 var text;
 var score;
 var scoreText;
-
-class TextPanel{
-    constructor(a){
-        this.sprite = game.add.sprite(0, 700, "textPanel");
-        this.style = { font: "16px Arial", fill: "#ff0044", wordWrap: true, wordWrapWidth: this.sprite.width, align: "center" };
-        this.text = game.add.text(game.camera.x+600, 750, textMessage[a], this.style);
-        this.text.anchor.set(0.5);
-        this.num = a;
-    }
-    destructor(){
-        //this.text.destroy();
-        console.log("dest");
-        if(textMessage[this.num]!="")
-        {
-            this.text.setText(textMessage[this.num+1]);
-            //this.text = game.add.text(game.camera.x+400, 750, textMessage[this.num+1], this.style);
-            this.num = this.num+1;
-            if(textMessage[this.num]=="")
-                canTalk= false;
-        }
-        else{
-            canTalk = true;
-        }
-
-    }
-    changeText(n){
-        console.log("ct");
-        this.text.setText(textMessage[n]);
-        this.num = n;
-    }
-}
-class Npc{
-    constructor(x, y, name, textIndex){
-        this.sprite = npc.create(x, y, name);
-        this.sprite.anchor.setTo(0.5, 0.5);
-    }
-}
-class Furniture{
-    constructor(x, y, name){
-        this.sprite = furniture.create(x, y, name);
-        this.sprite.anchor.setTo(0.5, 0.5);
-    }
-}
-class DontMoveFurniture{
-    constructor(x, y, name){
-        this.sprite = furniture.create(x, y, name);
-    }
-}
-class Item{
-    constructor(name){
-        var y = 50 + (items.length * 200);
-        this.sprite = items.create(1120+game.camera.x, y, name);
-        this.sprite.inputEnabled = true;
-        this.sprite.anchor.setTo(0.5, 0.5);
-        this.sprite.input.enableDrag();
-       this.sprite.events.onDragStart.add(itemDragStart, this.sprite);
-        this.sprite.events.onDragStop.add(listener, this.sprite);
-    }
-}
-function getItem(_name){
-    console.log(_name);
-    switch(_name.key){
-        case 'USB':
-            itemUSB = new Item("USB");
-            itemUSB.sprite.scale.x = 0.27;
-            itemUSB.sprite.scale.y = 0.27;
-            usbAlive = false;
-            _name.destroy();
-            game.physics.arcade.enable(itemUSB.sprite);
-            break;
-        case 'KEY':
-            itemKEY = new Item("KEY");
-            itemKEY.sprite.scale.x = 0.27;
-            itemKEY.sprite.scale.y = 0.27;
-            _name.destroy();
-            game.physics.arcade.enable(itemKEY.sprite);
-            break;
-
-    }
-}
-function itemDragStart(_gagu){
-    console.log("1");
-    switch(_gagu.key){
-        case "USB":
-            itemPos[0] = _gagu.position.y;
-            itemDragOn[0] = true;
-            break;
-        case "KEY":
-            itemPos[1] = _gagu.position.y;
-            itemDragOn[1] = true;
-            break;
-    }
-}
-function listener (_gagu){
-    console.log("2");
-    switch(_gagu.key){
-        case "USB":
-            itemDragOn[0] = false;
-            _gagu.position.y = itemPos[0];
-            _gagu.position.x = 1120+game.camera.x;
-            break;
-        case "KEY":
-                itemDragOn[1] = false;
-                _gagu.position.y = itemPos[1];
-                _gagu.position.x = 1120+game.camera.x;
-                break;
-    }
-}
-function USBOn(_usb, _pc){
-    console.log("ON");
-    _pc.loadTexture('PC_USB', 0);
-    Monitor.sprite.loadTexture('Monitor_Die', 0);
-    game.add.text(470, 280, '@sokisinside', { font: "24px Arial", fill: "#ffffff", align: "center"});
-    _usb.destroy();
-}
-function DoorOn(_key, _door){
-    console.log("ON");
-    _door.loadTexture('Door_Open', 0);
-    _key.destroy();
-}
-function GameEnd(_door){
-    if(endText == null && _door.key == "Door_Open"){
-        game.add.text(1500, 280, "He's gone", { font: "24px Arial", fill: "#ffffff", align: "center"});
-        console.log(localStorage.getItem('room'))
-        localStorage.setItem('room',true)
-        console.log(localStorage.getItem('room'))
-    }
+var buttons=[];
 
 
-}
-function DrawerChange(_gagu){
-    console.log(_gagu.key)
-    switch(nowDrawers){
-        case 0:
-           _gagu.loadTexture('Drawer_Up');
-            nowDrawers = 1;
-            break;
-        case 1:
-            _gagu.loadTexture('Drawer');
-            nowDrawers = 2;
-            break;
-        case 2:
-            _gagu.loadTexture('Drawer_Down');
-            nowDrawers = 3;
-            if(usbAlive){
-            if(f_items[0] == null){
-                f_items[0] = game.add.sprite(1950, 450, "USB");
-                f_items[0].inputEnabled = true;
-                f_items[0].events.onInputDown.add(getItem, this);
-            }
-             f_items[0].scale.y = 0.2; f_items[0].scale.x = 0.2;
-            }
-            break;
-        case 3:
-            _gagu.loadTexture('Drawer');
-            if(usbAlive){
-                f_items[0].scale.y = 0; f_items[0].scale.x = 0;
-            }
-            nowDrawers = 0;
-            break;
-    }
-}
+var textMessage = new Array( 
+    "주변에 현혹되지 않고, 앞을 보고 가십시오." //0
+  , "벡터 (1, 0)"
+  , "         해를 따라 가십시오.         ");
 
-function MoverClick(_mover){
-    
-    console.log(_mover);
-    console.log(_mover == mover[0]);
-    if(_mover == mover[0])
-    {
-        if(game.camera.x == 3600)
-            {
-                game.camera.x = 0;
-                mover[0].x -= 3600;
-                mover[1].x -= 3600;
-                trash.children[0].x -= 3600;
-                for(var i =0; i<items.length;i++){
-                    items.children[i].x -= 3600;
-                }
-            }
-        else{
-            game.camera.x += 1200;
-            mover[0].x += 1200;
-            mover[1].x += 1200;
-            trash.children[0].x += 1200;
-            for(var i =0; i<items.length;i++){
-                items.children[i].x += 1200;
-            }
-        }
-    }
-    else if(_mover == mover[1]){
-        if(game.camera.x == 0){
-            game.camera.x = 3600;
-            mover[0].x += 3600;
-            mover[1].x += 3600;
-            trash.children[0].x += 3600;
-            for(var i =0; i<items.length;i++){
-                items.children[i].x += 3600;
-            }
-        }
-        else{
-            game.camera.x -= 1200;
-            mover[0].x -= 1200;
-            mover[1].x -= 1200;
-            trash.children[0].x -= 1200;
-            for(var i =0; i<items.length;i++){
-                items.children[i].x -= 1200;
-            }
-        }
-    }
-}
-function keyPress(char) {
-    if(game.camera.x == 2400){
-        if(parseInt(char)>=1 && parseInt(char) <= 6 ){
-            if(words.length== 4)
-                words = "";
-            words += char;
-            text.setText(words);
-            if(words == "4143"){
-                GoldGo.sprite.loadTexture('GoldGo_Open');
-                f_items[1] = new DontMoveFurniture(3140, 453, "KEY");
-                f_items[1].sprite.inputEnabled = true;
-                f_items[1].sprite.events.onInputDown.add(getItem, this);
-                f_items[1].sprite.scale.x = 0.18;
-                f_items[1].sprite.scale.y = 0.18;
-            }
-            console.log(words);
-        }
-    }
-}
 
-var words = "0000";
-var text;
-var endText;
-var itemPos=[];
-var itemDragOn=[];
-var itemUI;
-var trash;
-var items;
-var textpanel;
-var mover = [];
-var bullets = [];
-var system;
-var canTalk = false;
-let platforms;
-var music;
-var canInput = true;
-var firstJumpPower;
-var secondJumpPower;
-let furniture;
-var stopTime;
-let random3;
-var walls;
-var bottoms;
-let itemUSB;
-let itemKEY;
-let Monitor;
-let PC;
-let Door;
-let Drawers;
-let GoldGo;
-var nowDrawers = 0;
-var f_items = [];
-var usbAlive = true;
 var play = {
     create : function(){
         game.physics.startSystem(Phaser.Physics.ARCADE);
-        stopTime = game.time.now;
-        canJump = true;
-        platforms = game.add.group();
-        furniture = game.add.group();
-        trash = game.add.group();
-        items = game.add.group();
-        trash.create(1050, 0, "UI");
-        text = game.add.text(3140, 250, words, { font: "24px Arial", fill: "#B62C1F", align: "center" , backgroundColor: "#000000"});
-        walls = new DontMoveFurniture(0, 0, "Wall");
-        bottoms = new DontMoveFurniture(0, 490, "Bottom");
-        new Furniture(530, 500, "Table");
-        Monitor =  new Furniture(550, 210, "Monitor");
-        new Furniture(543, 405, "KeyBoard");
-        Door = new DontMoveFurniture(1450, 13, "Door");
-        Door.sprite.inputEnabled = true;
-        Door.sprite.events.onInputDown.add(GameEnd, this);
-        Drawers = new DontMoveFurniture(1900, 300, "Drawer");
-        Drawers.sprite.inputEnabled = true;
-        Drawers.sprite.events.onInputDown.add(DrawerChange, this);
-        GoldGo = new DontMoveFurniture(3100, 370, "GoldGo");
-        PC = new Furniture(350, 330, "PC");
-        new Furniture(700, 400, "Mouse");
-        mover[0] = game.add.sprite(900, 300, "Mover")
-        mover[1] = game.add.sprite(150, 300, "Mover" )
-        for(var i = 0 ; i<2; i++){
-            mover[i].scale.y = 0.4;
-            mover[i].inputEnabled = true;
-            mover[i].events.onInputDown.add(MoverClick, this);
-        }
-        mover[1].scale.x = -0.4;
-        mover[0].scale.x = 0.4;
-        for(var i = 0 ; i<furniture.length; i++){
-            furniture.children[i].scale.x = 0.4;
-            furniture.children[i].scale.y = 0.4;
-            game.physics.arcade.enable(furniture.children[i]);
-        }
-        walls.sprite.scale.x = 10;
-        walls.sprite.scale.y = 2;
-        bottoms.sprite.scale.x = 10;
-        bottoms.sprite.scale.y = 2;
-        game.input.keyboard.addCallbacks(this, null, null, keyPress);
+        this.startGame(1 , 1, 0, 0);
+        // this.startGame(0.85 , 0.85);
         game.scale.pageAlignHorizontally = true;
         game.scale.pageAlignVertically = true;
-        game.stage.backgroundColor = "#000000";
-        game.world.setBounds(0, 0, 222222, 4000);
+        game.stage.backgroundColor = "#ffffff";
+        game.world.setBounds(0, 0, 1200, 700);
         score = 0;
         game.input.mouse.capture = true;
         
@@ -328,6 +35,26 @@ var play = {
         // if(itemKEY != null)
         //         game.physics.arcade.collide(itemKEY.sprite, Door.sprite, DoorOn, null, this);
         // }
-    }
+    },
+    startGame : function(xScale, yScale, num, answer){
+        var c = game.add.sprite(0, 0, "BG");
+        c.scale.x = xScale; c.scale.y = yScale;
+        var a = game.add.sprite(320 * xScale, 400 * yScale, "sok");
+        a.scale.x = xScale;  a.scale.y = yScale;
+        var b = game.add.sprite(580 * xScale, 400 * yScale, "player");
+        b.scale.x = xScale;  b.scale.y = yScale;
+        for(var i =100 ; i<=1000 ; i+=150){
+            var d = game.add.sprite(i, 741, "sunFlower");
+            d.scale.x = xScale*0.8; d.scale.y = yScale*0.8;
+        }
+        buttons[0] = game.add.sprite(600-86, 200, "front");
+        buttons[0].scale.x = xScale*0.8; buttons[0].scale.y = yScale*0.8;
+        buttons[1] = game.add.sprite(300-86, 200, "left");
+        buttons[1].scale.x = xScale*0.8; buttons[1].scale.y = yScale*0.8;
+        buttons[2] = game.add.sprite(900-86, 200, "right");
+        buttons[2].scale.x = xScale*0.8; buttons[2].scale.y = yScale*0.8;
+        var style2 = { font: "22px Arial", fill: "#000000", wordWrap: true, wordWrapWidth: 1200, align: "center" };
+        text = game.add.text((game.camera.x+430)* xScale, 100 * yScale, textMessage[num], style2);
+    } 
 }
     game.state.add("Play", play);

@@ -1,29 +1,15 @@
 var press = "...Press Spacebar..."
 var Main = {
     preload : function(){
-        game.load.image("textPanel", "./assets/roomescape/TEXTPANEL.png");
-        game.load.audio("bgm", "./assets/roomescape/Ryugihak.mp3");
+        game.load.image("textPanel", "./assets/way/TEXTPANEL.png");
         //
-        game.load.image("Table", "./assets/roomescape/DESK.png");
-        game.load.image("Mouse", "./assets/roomescape/Mouse.png");
-        game.load.image("KeyBoard", "./assets/roomescape/KEYBOARD.png");
-        game.load.image("PC", "./assets/roomescape/PC.png");
-        game.load.image("PC_USB", "./assets/roomescape/PC_USB.png");
-        game.load.image("Mover", "./assets/roomescape/Mover.png");
-        game.load.image("UI", "./assets/roomescape/Item.png");
-        game.load.image("Monitor", "./assets/roomescape/Monitor.png");
-        game.load.image("Monitor_Die", "./assets/roomescape/Monitor_Die.png");
-        game.load.image("USB", "./assets/roomescape/USB.png");
-        game.load.image("KEY", "./assets/roomescape/KEY.png");
-        game.load.image("Door", "./assets/roomescape/Door.png");
-        game.load.image("Door_Open", "./assets/roomescape/Door_Open.png");
-        game.load.image("GoldGo", "./assets/roomescape/GoldGo.png");
-        game.load.image("GoldGo_Open", "./assets/roomescape/GoldGo_Open.png");
-        game.load.image("Drawer", "./assets/roomescape/Drawer.png");
-        game.load.image("Drawer_Down", "./assets/roomescape/Drawer_Down.png");
-        game.load.image("Drawer_Up", "./assets/roomescape/Drawer_Up.png");
-        game.load.image("Wall", "./assets/roomescape/Wall.png");
-        game.load.image("Bottom", "./assets/roomescape/Bottom.png");
+        game.load.image("sok", "./assets/way/sok.png")
+        game.load.image("player", "./assets/way/player.png")
+        game.load.image("left", "./assets/way/left.png")
+        game.load.image("front", "./assets/way/front.png")
+        game.load.image("right", "./assets/way/right.png")
+        game.load.image("sunFlower", "./assets/way/sunFlower.png")
+        game.load.image("BG", "./assets/way/WhiteBackGround.png")
     },
     create : function(){
         game.scale.pageAlignHorizontally = true;

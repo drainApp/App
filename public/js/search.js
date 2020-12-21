@@ -30,7 +30,12 @@ var input_text = input.value
         case '붉은지붕':
             window.open('roomescape.html')
             break;
-
+        case "흰 길":
+        case '흰 길':
+        case "흰길":
+        case '흰길':
+            window.open('way.html')
+            break;
         case "환경 설정":
         case '환경 설정':
         case "환경설정": 
