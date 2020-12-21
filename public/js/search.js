@@ -47,16 +47,17 @@ var input_text = input.value
 }
 var searchCheck = setInterval(
     function a(){
+        console.log("searchCheck");
         if(localStorage.getItem('redRoof') == 'true'){
             document.getElementById("redRoof").innerHTML = "3 붉은 지붕"
         }
-        if(localStorage.getItem('crow') == 'true'){
+        if(localStorage.getItem('crows') == 'true'){
             document.getElementById("crow").innerHTML = "2 까마귀"
         }
-    }, 2000
+    }, 500
 );
 
-localStorage.setItem('fly',false)
-localStorage.setItem('room',false)
-localStorage.setItem('redRoof',false)
-localStorage.setItem('crow',false)
+// localStorage.setItem('fly',false)
+// localStorage.setItem('room',false)
+// localStorage.setItem('redRoof',false)
+// localStorage.setItem('crows',false)

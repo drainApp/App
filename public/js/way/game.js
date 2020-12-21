@@ -164,23 +164,7 @@ function DrawerChange(_gagu){
             break;
     }
 }
-function Npc1Collision (_pc, _npc){
-    if(player.talkKey.downDuration(25) && textpanel.text._text == "" && canTalk){
-    npc1 = _npc;
-    switch(_npc.key){
-        case "Table":
-            textpanel.changeText(6);
-            break;
-        case "NPC1":
-            textpanel.changeText(17);
-            break;
-        case "PeopleSit":
-            textpanel.changeText(13);
-            break;
 
-    }
-}
-}
 function MoverClick(_mover){
     
     console.log(_mover);
@@ -247,37 +231,7 @@ function keyPress(char) {
         }
     }
 }
-var textMessage = new Array( 
-  "(으악)" //0
-, "(그러나 이젠 그림을 그릴  수 없었다.)"
-, "(그에겐 남은 시간이 얼마 없었기 때문에.)"
-, "(도시에서 노동자는 소모품이었다.)"
-, "(마지막으로, 그는 도시에서 벗어나기로 마음을 먹었다. . .)"
-, ""
-, "(수명단축의 맛, 무한노동 에너지 드링크.)" // 6
-, "(책상엔 같은 캔이 여러 개 놓여있다. . .)"
-, ""
-, "(엘리베이터는 작동하지 않는다.)" //9
-, "(들어오는 사람은 있어도 나가는 사람은 없기 때문이다.)"
-, "(다른 출구를 찾아보자. . .)"
-, ""
-, "(그들은 쉴 틈 없이 일하고 있다.)" //13
-, "(반복적인 일, 피폐한 정신, 내려온 다크서클.)"
-, "(쌓이는 스트레스, 떡진 머리, 꿈이 없는 밤.)"
-, ""
-, "\"당신은 도시를 떠나려는 것 같아보이네요.\""//17
-, "(그가 말했다.)"
-, "(같은 회사를 다녔지만, 타인의 얼굴을 기억할 여유는 없었지만)"
-, "(적어도 지금 그의 모습은 다른 도시 사람들과 조금은 달라보였다.)"
-, "\"회사 밖에서, 붉은 지붕 집을 찾아가요.\""
-, "\"도시 밖으로 나갈 방법을 알려줄 사람이 있을 거에요.\""
-, "\"저는 결국 용기가 부족해 나가지 못했지만, 당신이라면 할 수 있을거에요.\""
-, "(그 말을 끝으로, 그는 다시 자신의 할 일에 열중하기 시작했다.)"
-, ""
-, "" // 26
-, ""
-, ""
-)
+
 var words = "0000";
 var text;
 var endText;
@@ -286,8 +240,6 @@ var itemDragOn=[];
 var itemUI;
 var trash;
 var items;
-var lastTextTime = 0;
-var lastJumpTime = 0;
 var textpanel;
 var mover = [];
 var bullets = [];
@@ -359,41 +311,23 @@ var play = {
         game.input.keyboard.addCallbacks(this, null, null, keyPress);
         game.scale.pageAlignHorizontally = true;
         game.scale.pageAlignVertically = true;
-        game.stage.backgroundColor = "#1c242e";
-        // system = new System();
+        game.stage.backgroundColor = "#000000";
         game.world.setBounds(0, 0, 222222, 4000);
-        // textpanel = new TextPanel(0);
         score = 0;
         game.input.mouse.capture = true;
         
 
     },
     update : function(){
-        // if(music == null)
-        // {
-        // console.log("music on");
-        // music = game.add.audio('bgm');
-        // music.volume = 0.5;
-        // music.play();
-        // }
-        if(itemDragOn[0] == false){
-            if(itemUSB != null)
-                game.physics.arcade.collide(itemUSB.sprite, PC.sprite, USBOn, null, this);
-        }
-        if(itemDragOn[1] == false){
-        if(itemKEY != null)
-                game.physics.arcade.collide(itemKEY.sprite, Door.sprite, DoorOn, null, this);
-        }
-    //    textpanel.sprite.x = game.camera.x;
-    //    textpanel.text.x = game.camera.x+600;
-    //    textpanel.sprite.y = game.camera.y + 600;
-    //    textpanel.text.y = game.camera.y + 680;
 
-       //game.input.activePointer.leftButton.isDown
-    //    if(player.talkKey.downDuration(25)&& lastTextTime+50 < game.time.now){
-    //         lastTextTime = game.time.now;
-    //         textpanel.destructor();
-    //    }
+        // if(itemDragOn[0] == false){
+        //     if(itemUSB != null)
+        //         game.physics.arcade.collide(itemUSB.sprite, PC.sprite, USBOn, null, this);
+        // }
+        // if(itemDragOn[1] == false){
+        // if(itemKEY != null)
+        //         game.physics.arcade.collide(itemKEY.sprite, Door.sprite, DoorOn, null, this);
+        // }
     }
 }
     game.state.add("Play", play);

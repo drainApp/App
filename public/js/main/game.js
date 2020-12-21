@@ -298,7 +298,7 @@ var play = {
          if(player.sprite.x > 1380 && player.sprite.body.velocity.x > 0 && fly != 'true'){ // 까마귀 올라갓으면
               player.sprite.body.velocity.x = 0;
               if(textpanel.text.text == ''){
-                localStorage.setItem('crow',true);
+                localStorage.setItem('crows',true);
                 textpanel.changeText(26);
               }
 
