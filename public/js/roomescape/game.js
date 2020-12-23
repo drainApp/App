@@ -366,7 +366,14 @@ var play = {
         // textpanel = new TextPanel(0);
         score = 0;
         game.input.mouse.capture = true;
-        
+        if(music == null)
+        {
+        console.log("music on");
+        music = game.add.audio('bgm');
+        music.volume = 0.5;
+        music.loop = true;
+        music.play();
+        }
 
     },
     update : function(){

@@ -11,6 +11,7 @@ var Main = {
         game.load.image("sunFlower", "./assets/way/sunFlower.png")
         game.load.image("BG", "./assets/way/WhiteBackGround.png")
         game.load.image("BBG", "./assets/way/BlackBackGround.png")
+        game.load.audio("bgm", "./assets/way/dumb.mp3");
     },
     create : function(){
         game.scale.pageAlignHorizontally = true;

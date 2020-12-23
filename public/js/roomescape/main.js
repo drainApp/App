@@ -2,7 +2,7 @@ var press = "...Press Spacebar..."
 var Main = {
     preload : function(){
         game.load.image("textPanel", "./assets/roomescape/TEXTPANEL.png");
-        game.load.audio("bgm", "./assets/roomescape/Ryugihak.mp3");
+        game.load.audio("bgm", "./assets/roomescape/four.mp3");
         //
         game.load.image("Table", "./assets/roomescape/DESK.png");
         game.load.image("Mouse", "./assets/roomescape/Mouse.png");

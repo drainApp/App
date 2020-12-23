@@ -1,6 +1,7 @@
 var game = new Phaser.Game(1200 , 1200, Phaser.CANVAS, "GameDiv");
 var text;
 var score;
+var music;
 var gameLevel = 0;
 var scoreText;
 var buttons=[];
@@ -95,7 +96,14 @@ var play = {
         score = 0;
         game.input.mouse.capture = true;
         
-
+        if(music == null)
+        {
+        console.log("music on");
+        music = game.add.audio('bgm');
+        music.volume = 0.5;
+        music.loop = true;
+        music.play();
+        }
     },
     update : function(){
 
