@@ -124,7 +124,8 @@ function DoorOn(_key, _door){
 }
 function GameEnd(_door){
     if(endText == null && _door.key == "Door_Open"){
-        game.add.text(1500, 280, "He's gone", { font: "24px Arial", fill: "#ffffff", align: "center"});
+        game.add.text(1510, 220, "He's gone", { font: "22px Arial", fill: "#ffffff", align: "center"});
+        game.add.text(1490, 260, "Back to 'Wall'..", { font: "22px Arial", fill: "#ffffff", align: "center"});
         console.log(localStorage.getItem('room'))
         localStorage.setItem('room',true)
         console.log(localStorage.getItem('room'))

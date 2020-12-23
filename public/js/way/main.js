@@ -10,6 +10,7 @@ var Main = {
         game.load.image("right", "./assets/way/right.png")
         game.load.image("sunFlower", "./assets/way/sunFlower.png")
         game.load.image("BG", "./assets/way/WhiteBackGround.png")
+        game.load.image("BBG", "./assets/way/BlackBackGround.png")
     },
     create : function(){
         game.scale.pageAlignHorizontally = true;

@@ -59,6 +59,14 @@ var searchCheck = setInterval(
         if(localStorage.getItem('crows') == 'true'){
             document.getElementById("crow").innerHTML = "2 까마귀"
         }
+        if(localStorage.getItem('way') == 'true'){
+            document.getElementById("way").innerHTML = "4 흰 길"
+        }
+        if(localStorage.getItem('end') == 'true'){
+            document.getElementById("wall").innerHTML = "1 끝 (NEW)"
+            //여기에 wall 글자색 빨간색으로 변경.
+            //여기에 전체 index.html 배경색 회색으로 변경.
+        }
     }, 500
 );
 
