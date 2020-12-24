@@ -294,7 +294,7 @@ var play = {
         crow[1]= new Crow(1680, 200);
         crow[2]= new Crow(1810, 200);
         game.physics.enable(npc, Phaser.Physics.ARCADE);
-        for(let i = 0; i< npc.length ; i++){
+        for(let i = 0; i< npc.lengteh ; i++){
             npc.children[i].body.immovable = true;
             npc.children[i].body.checkCollision.right = false;
             npc.children[i].body.checkCollision.left = false;
@@ -334,7 +334,7 @@ var play = {
         {
         console.log("music on");
         music = game.add.audio('bgm');
-        music.volume = 0.5;
+        music.volume = localStorage.getItem('volume', 0.5);
         music.loop = true;
         music.play();
         }

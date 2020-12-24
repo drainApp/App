@@ -8,6 +8,12 @@ btn.addEventListener("click",()=>{
     search()
 })
 
+var bgm = new Audio('');
+var bgm_url = "./assets/search/Ambush_Cut.mp3";
+bgm = new Audio(bgm_url);
+bgm.volume = localStorage.getItem('volume');
+bgm.play();
+
 function search(){
 var input_text = input.value
     switch (input_text) {
@@ -169,6 +175,7 @@ var searchCheck = setInterval(
             document.getElementsByTagName('body')[0].style.backgroundColor='#b12a38'
         }
         else{
+            localStorage.setItem('volume', 0.5);
             document.getElementById("wall").innerHTML = "1"
             document.getElementById("wall").style.color='black'
             document.getElementsByTagName('body')[0].style.backgroundColor='#b12a38'

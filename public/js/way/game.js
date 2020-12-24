@@ -1,4 +1,4 @@
-var game = new Phaser.Game(900 , 900, Phaser.CANVAS, "GameDiv");
+var game = new Phaser.Game(700 , 700, Phaser.CANVAS, "GameDiv");
 var text;
 var score;
 var music;
@@ -6,8 +6,8 @@ var gameLevel = 0;
 var scoreText;
 var buttons=[];
 var answer = [0, 1, 2, 0, 1];
-var x = 0.75;
-var y = 0.75;
+var x = 0.583;
+var y = 0.583;
 
 
 var textMessage = new Array( 
@@ -44,17 +44,17 @@ function buttonClick(_btn){
         x *= 0.8;
         y *= 0.8;
         bbg.scale.x = x; bbg.scale.y = y;
-        var style2 = { font: "36px Arial", fill: "#ffffff", wordWrap: true, wordWrapWidth: 1200, align: "center" };
+        var style2 = { font: "28px Arial", fill: "#ffffff", wordWrap: true, wordWrapWidth: 1200, align: "center" };
         text = game.add.text(100*x, 200 * y, "We found our W   Y", style2);
         text = game.add.text(100*x, 300 * y, "We found our    AY", style2);
         text = game.add.text(100*x, 400 * y, "We found our WA   ", style2);
-        text = game.add.text(360*x, 700 * y, " Back to 'Wall'..", { font: "24px Arial", fill: "#ffffff", wordWrap: true, wordWrapWidth: 1200, align: "center" });
+        text = game.add.text(330*x, 700 * y, " Back to 'Wall'..", { font: "20px Arial", fill: "#ffffff", wordWrap: true, wordWrapWidth: 1200, align: "center" });
         localStorage.setItem("whiteWay", true);
     }
     else{
-        x = 0.75;
+        x = 0.583;
         gameLevel = 0;
-        y = 0.75;
+        y = 0.583;
         startGame(x, y, gameLevel);
     }
 }
@@ -79,18 +79,18 @@ function startGame(xScale, yScale, num){
         buttons[i].inputEnabled = true;
         buttons[i].events.onInputDown.add(buttonClick, this);
     }
-    var style2 = { font: "36px Arial", fill: "#000000", wordWrap: true, wordWrapWidth: 1200, align: "center" };
-    var style = { font: "22px Arial", fill: "#000000", wordWrap: true, wordWrapWidth: 1200, align: "center" };
-    text = game.add.text(320*xScale, 100 * yScale, textMessage[num], style2);
+    var style2 = { font: "46px Arial", fill: "#000000", wordWrap: true, wordWrapWidth: 1200, align: "center" };
+    var style = { font: "32px Arial", fill: "#000000", wordWrap: true, wordWrapWidth: 1200, align: "center" };
+    text = game.add.text(253*xScale, 100 * yScale, textMessage[num], style2);
     text.scale.x = xScale; text.scale.y = yScale;
-    var text2 = game.add.text(460*xScale, 150 * yScale, "방향 버튼을 골라주세요.", style);
+    var text2 = game.add.text(410*xScale, 150 * yScale, "방향 버튼을 골라주세요.", style);
     text2.scale.x = xScale; text2.scale.y = yScale;
 } 
 
 var play = {
     create : function(){
         game.physics.startSystem(Phaser.Physics.ARCADE);
-        startGame(0.75 , 0.75, 0);
+        startGame(0.583 , 0.583, 0);
         // this.startGame(0.85 , 0.85);
         game.scale.pageAlignHorizontally = true;
         game.scale.pageAlignVertically = true;
@@ -103,7 +103,7 @@ var play = {
         {
         console.log("music on");
         music = game.add.audio('bgm');
-        music.volume = 0.5;
+        music.volume = localStorage.getItem('volume', 0.5);
         music.loop = true;
         music.play();
         }

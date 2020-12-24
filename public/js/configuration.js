@@ -6,12 +6,13 @@ var Initializationbtn = document.getElementById('Initialization')
 var soundbtn = document.getElementById('left')
             
 localStorage.setItem("configComplete", true);
-
-
+slider.value = localStorage.getItem("volume", 5) * 10;
+localStorage.setItem("volume", this.value * 0.1);
 
 slider.onmouseup = function() {// 슬라이더 움직일 때 값에 따라 다르게 들어가게
-    alert('음악을 들을 수 없는 환경이라면 게임을 플레이하지 말아주세요')
-    this.value=5
+    //alert('음악을 들을 수 없는 환경이라면 게임을 플레이하지 말아주세요')
+    localStorage.setItem("volume", this.value * 0.1);
+    //this.value=5
 }
 
 ear.addEventListener("click",earclick)

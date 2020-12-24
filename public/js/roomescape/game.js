@@ -370,7 +370,7 @@ var play = {
         {
         console.log("music on");
         music = game.add.audio('bgm');
-        music.volume = 0.5;
+        music.volume = localStorage.getItem('volume', 0.5);
         music.loop = true;
         music.play();
         }
