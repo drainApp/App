@@ -1,17 +1,12 @@
 var input = document.getElementById('searchbar')
 var btn = document.getElementsByClassName('b')[0]
 
+
 input.focus()
 
 btn.addEventListener("click",()=>{
     search()
 })
-
-var go = (e) => {
-    if (e.keyCode == 13) btn.click()
-}
-
-input.addEventListener("keypress",go)
 
 function search(){
 var input_text = input.value
@@ -57,36 +52,126 @@ var input_text = input.value
     input.value=""
 
 }
+
+var go = (e) => {
+    if (e.keyCode == 13) btn.click()
+}
+input.addEventListener("keypress",go)
+
+
+document.addEventListener("DOMContentLoaded",()=>{
+    if(localStorage.getItem('way') == 'true'){
+        document.getElementById("redRoof").innerHTML = "- 3 붉은 지붕"
+    }
+    else if(localStorage.getItem('redRoof') == 'true'){
+        document.getElementById("redRoof").innerHTML = "▲ 3 붉은 지붕 (new)!"
+    }
+    else{
+        document.getElementById("redRoof").innerHTML = "3"
+    }
+
+    if(localStorage.getItem('redRoof') == 'true'){
+        document.getElementById("crow").innerHTML = "- 2 까마귀"
+    }
+    else if(localStorage.getItem('crows') == 'true'){
+        document.getElementById("crow").innerHTML = "▲ 2 까마귀 (new)!"
+    }
+    else{
+        document.getElementById("crow").innerHTML = "2"
+    }
+
+    if(localStorage.getItem('end') == 'true'){
+        document.getElementById("way").innerHTML = "- 4 흰 길"
+    }
+    else if(localStorage.getItem('way') == 'true'){
+        document.getElementById("way").innerHTML = "▲ 4 흰 길 (new)!"
+    }
+    else{
+        document.getElementById("way").innerHTML = "4"
+    }
+
+    if(localStorage.getItem('end') == 'true'){ 
+        document.getElementById("wall").innerHTML = "▲ 1 끝 (new)!"
+        //여기에 wall 글자색 빨간색으로 변경.
+        document.getElementById("wall").style.color='red'
+        //여기에 전체 index.html 배경색 회색으로 변경.
+        document.getElementsByTagName('body')[0].style.backgroundColor='gray'
+    }
+    
+    else if(localStorage.getItem('crows') == 'true'){
+        document.getElementById("wall").innerHTML = "- 1 벽"
+    }
+    
+    else if(localStorage.getItem('configComplete') == 'true'){
+        document.getElementById("wall").innerHTML = "▲ 1 벽 (new)!"
+        document.getElementById("wall").style.color='black'
+        document.getElementsByTagName('body')[0].style.backgroundColor='#b12a38'
+    }
+    else{
+        document.getElementById("wall").innerHTML = "1"
+        document.getElementById("wall").style.color='black'
+        document.getElementsByTagName('body')[0].style.backgroundColor='#b12a38'
+    }
+});
+
+
+// － ▼ ▲ 
+
 var searchCheck = setInterval(
     function a(){
         console.log("searchCheck");
-        if(localStorage.getItem('redRoof') == 'true'){
-            document.getElementById("redRoof").innerHTML = "3 붉은 지붕"
-        }
-        else document.getElementById("redRoof").innerHTML ="3 잠긴 항목"
-
-        if(localStorage.getItem('crows') == 'true'){
-            document.getElementById("crow").innerHTML = "2 까마귀"
-        }
-        else document.getElementById("crow").innerHTML ="2 잠긴 항목"
-
+        
         if(localStorage.getItem('way') == 'true'){
-            document.getElementById("way").innerHTML = "4 흰 길"
+            document.getElementById("redRoof").innerHTML = "- 3 붉은 지붕"
         }
-        else document.getElementById("way").innerHTML ="4 잠긴 항목"
+        else if(localStorage.getItem('redRoof') == 'true'){
+            document.getElementById("redRoof").innerHTML = "▲ 3 붉은 지붕 (new)!"
+        }
+        else{
+            document.getElementById("redRoof").innerHTML = "3"
+        }
+
+        if(localStorage.getItem('redRoof') == 'true'){
+            document.getElementById("crow").innerHTML = "- 2 까마귀"
+        }
+        else if(localStorage.getItem('crows') == 'true'){
+            document.getElementById("crow").innerHTML = "▲ 2 까마귀 (new)!"
+        }
+        else{
+            document.getElementById("crow").innerHTML = "2"
+        }
+
+        if(localStorage.getItem('end') == 'true'){
+            document.getElementById("way").innerHTML = "- 4 흰 길"
+        }
+        else if(localStorage.getItem('way') == 'true'){
+            document.getElementById("way").innerHTML = "▲ 4 흰 길 (new)!"
+        }
+        else{
+            document.getElementById("way").innerHTML = "4"
+        }
 
         if(localStorage.getItem('end') == 'true'){ 
-            document.getElementById("wall").innerHTML = "1 끝 (new)!"
+            document.getElementById("wall").innerHTML = "▲ 1 끝 (new)!"
             //여기에 wall 글자색 빨간색으로 변경.
             document.getElementById("wall").style.color='red'
             //여기에 전체 index.html 배경색 회색으로 변경.
             document.getElementsByTagName('body')[0].style.backgroundColor='gray'
         }
-        else{ 
-            document.getElementById("wall").innerHTML ="1 벽"
+        
+        else if(localStorage.getItem('crows') == 'true'){
+            document.getElementById("wall").innerHTML = "- 1 벽"
+        }
+        
+        else if(localStorage.getItem('configComplete') == 'true'){
+            document.getElementById("wall").innerHTML = "▲ 1 벽 (new)!"
             document.getElementById("wall").style.color='black'
             document.getElementsByTagName('body')[0].style.backgroundColor='#b12a38'
-
+        }
+        else{
+            document.getElementById("wall").innerHTML = "1"
+            document.getElementById("wall").style.color='black'
+            document.getElementsByTagName('body')[0].style.backgroundColor='#b12a38'
         }
     }, 500
 );
@@ -94,34 +179,7 @@ var searchCheck = setInterval(
 
 
 
-if(localStorage.getItem('redRoof') == 'true'){
-    document.getElementById("redRoof").innerHTML = "3 붉은 지붕"
-}
-else document.getElementById("redRoof").innerHTML ="3 잠긴 항목"
 
-if(localStorage.getItem('crows') == 'true'){
-    document.getElementById("crow").innerHTML = "2 까마귀"
-}
-else document.getElementById("crow").innerHTML ="2 잠긴 항목"
-
-if(localStorage.getItem('way') == 'true'){
-    document.getElementById("way").innerHTML = "4 흰 길"
-}
-else document.getElementById("way").innerHTML ="4 잠긴 항목"
-
-if(localStorage.getItem('end') == 'true'){ 
-    document.getElementById("wall").innerHTML = "1 끝 (new)!"
-    //여기에 wall 글자색 빨간색으로 변경.
-    document.getElementById("wall").style.color='red'
-    //여기에 전체 index.html 배경색 회색으로 변경.
-    document.getElementsByTagName('body')[0].style.backgroundColor='gray'
-}
-else{ 
-    document.getElementById("wall").innerHTML ="1 벽"
-    document.getElementById("wall").style.color='black'
-    document.getElementsByTagName('body')[0].style.backgroundColor='#b12a38'
-
-}
 
 
 // localStorage.setItem('fly',false)

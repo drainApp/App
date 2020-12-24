@@ -9,17 +9,24 @@
 </head>
     <body>
         <div id="leaves">
-            <img src="./assets/configuration/ear.png" alt="" id="ear" width="80px" height="80px">
-            <img src="./assets/configuration/b.png" alt="" id="slash" width="80px" height="80px">
+            <img src="./assets/configuration/ear.png" alt="" id="ear" >
+            <img src="./assets/configuration/b.png" alt="" id="slash" >
         </div> 
+        <div id="top">Configuration</div>
+
         <div id="layout">
-            <div id="top">Configuration</div>
+            <div id="left">
+                <div>소리 권한 허용</div>
+                <div> (강하게 권장)</div>
+            </div>
+
             <div id="mid" class="slidecontainer">  
                 <input type="range" min="0" max="10" value="5" class="slider" id="myRange">
             </div>
-            <div id="Initialization">
-                RESET
-            </div>
+                
+        </div>
+        <div id="Initialization">
+            RESET
         </div>
         <script src="./js/configuration.js"></script>
     </body>

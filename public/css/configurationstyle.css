@@ -12,20 +12,19 @@ body {
 
 #layout{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     padding-top: 10vh;
+    justify-content: space-around;
+    margin: 8%;
 }
 
 #top{
-    font-size: 40px;
+    font-size:340%;
+    text-align: center;
+    padding-top: 6vh;
 }
 
-#mid{
-    padding-top: 33vh;
-    padding-left: 5vw;
-
-}
 
 .slidecontainer {
 	width: 10vw;
@@ -82,18 +81,28 @@ body {
 
 
 img{
-    top: 45.7vh;
-    left: 41vw;
-	position: absolute;
+    top: 39.5vh;
+    right: 33vw;
+    position: absolute;
+    width: 6%;
 }
 
 #slash{
 	position: absolute;
-	display: none;
+    display: none;
 }
 
 #Initialization{
-    margin-top: 20vh;
+    margin: 20vh auto 0 auto;
+    font-size: 30px;
+    padding: 5px;
+    cursor: pointer;
+    border: 3px solid black;
+    width: 10vw;
+    text-align: center;
+}
+
+#left{
     font-size: 30px;
     padding: 5px;
     cursor: pointer;
