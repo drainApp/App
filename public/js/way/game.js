@@ -1,18 +1,21 @@
-var game = new Phaser.Game(1200 , 1200, Phaser.CANVAS, "GameDiv");
+var game = new Phaser.Game(900 , 900, Phaser.CANVAS, "GameDiv");
 var text;
 var score;
 var music;
 var gameLevel = 0;
 var scoreText;
 var buttons=[];
-var x = 1
-var y = 1;
+var answer = [0, 1, 2, 0, 1];
+var x = 0.75;
+var y = 0.75;
 
 
 var textMessage = new Array( 
     "          그저 직진하십시오.          " //0
   , "      벡터(1, 0)쪽으로 가십시오.      " //1
-  , "          해를 따라 가십시오.          "); //2
+  , "          해를 따라 가십시오.          " //2
+  , "      벡터(0, 1)쪽으로 가십시오.      " //0
+  , "      벡터(-1, 0)쪽으로 가십시오.      "); //1
 
 function buttonClick(_btn){
     var a = -1;
@@ -27,13 +30,13 @@ function buttonClick(_btn){
     if(a != -1){
     console.log(a);
     console.log(gameLevel);
-    if(gameLevel == a && gameLevel < 2){
+    if(answer[gameLevel] == a && gameLevel < 4){
         console.log("bbb");
-        x *= 0.8;
-        y *= 0.8;
+        x *= 0.85;
+        y *= 0.85;
         startGame(x, y, ++gameLevel);
     }
-    else if(gameLevel == a && gameLevel == 2)
+    else if(answer[gameLevel] == a && gameLevel == 4)
     {
         buttons[0] = null;buttons[1] = null;buttons[2] = null;
         console.log("aaa");
@@ -42,16 +45,16 @@ function buttonClick(_btn){
         y *= 0.8;
         bbg.scale.x = x; bbg.scale.y = y;
         var style2 = { font: "36px Arial", fill: "#ffffff", wordWrap: true, wordWrapWidth: 1200, align: "center" };
-        text = game.add.text(300*x, 200 * y, "We found our W   Y", style2);
-        text = game.add.text(300*x, 300 * y, "We found our    AY", style2);
-        text = game.add.text(300*x, 400 * y, "We found our WA   ", style2);
-        text = game.add.text(360*x, 700 * y, " Back to 'Wall'..", style2);
+        text = game.add.text(100*x, 200 * y, "We found our W   Y", style2);
+        text = game.add.text(100*x, 300 * y, "We found our    AY", style2);
+        text = game.add.text(100*x, 400 * y, "We found our WA   ", style2);
+        text = game.add.text(360*x, 700 * y, " Back to 'Wall'..", { font: "24px Arial", fill: "#ffffff", wordWrap: true, wordWrapWidth: 1200, align: "center" });
         localStorage.setItem("whiteWay", true);
     }
     else{
-        x = 1;
+        x = 0.75;
         gameLevel = 0;
-        y = 1;
+        y = 0.75;
         startGame(x, y, gameLevel);
     }
 }
@@ -87,7 +90,7 @@ function startGame(xScale, yScale, num){
 var play = {
     create : function(){
         game.physics.startSystem(Phaser.Physics.ARCADE);
-        startGame(1 , 1, 0);
+        startGame(0.75 , 0.75, 0);
         // this.startGame(0.85 , 0.85);
         game.scale.pageAlignHorizontally = true;
         game.scale.pageAlignVertically = true;
