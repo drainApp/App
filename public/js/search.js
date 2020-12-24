@@ -23,6 +23,11 @@ var input_text = input.value
         case '벽':
             window.open('main.html')
             break;
+        
+        case "끝":
+        case '끝':
+            window.open('end.html')
+            break;    
             
         case "붉은 지붕":
         case '붉은 지붕':
@@ -56,16 +61,27 @@ var searchCheck = setInterval(
         if(localStorage.getItem('redRoof') == 'true'){
             document.getElementById("redRoof").innerHTML = "3 붉은 지붕"
         }
+        else document.getElementById("redRoof").innerHTML ="3 잠긴 항목"
         if(localStorage.getItem('crows') == 'true'){
             document.getElementById("crow").innerHTML = "2 까마귀"
         }
+        else document.getElementById("redRoof").innerHTML ="2 잠긴 항목"
         if(localStorage.getItem('way') == 'true'){
             document.getElementById("way").innerHTML = "4 흰 길"
         }
-        if(localStorage.getItem('end') == 'true'){
+        else document.getElementById("redRoof").innerHTML ="4 잠긴 항목"
+        if(localStorage.getItem('end') == 'true'){ 
             document.getElementById("wall").innerHTML = "1 끝 (NEW)"
             //여기에 wall 글자색 빨간색으로 변경.
+            document.getElementById("wall").style.color='red'
             //여기에 전체 index.html 배경색 회색으로 변경.
+            document.getElementsByTagName('body')[0].style.backgroundColor='gray'
+        }
+        else{ 
+            document.getElementById("redRoof").innerHTML ="4 잠긴 항목"
+            document.getElementById("wall").style.color='black'
+            document.getElementsByTagName('body')[0].style.backgroundColor='#b12a38'
+
         }
     }, 500
 );
