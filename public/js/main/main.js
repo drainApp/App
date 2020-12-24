@@ -10,8 +10,11 @@ var Main = {
         game.load.audio("bgm", "./assets/main/BaekHwaJeom.mp3");
         game.load.image("Black", "./assets/main/black.png");
         game.load.image("Black2", "./assets/main/black2.png");
+        game.load.image("SF", "./assets/main/SF.png");
+        game.load.image("EXIT", "./assets/main/Exit.png");
         //
         game.load.image("BG", "./assets/main/map/BG.png");
+        game.load.image("BG2", "./assets/main/map/BG2.png");
         game.load.image("building1", "./assets/main/map/top.png");
         game.load.image("building2", "./assets/main/map/mid.png");
         game.load.image("building3", "./assets/main/map/mid_2.png");
@@ -37,7 +40,6 @@ var Main = {
         game.scale.pageAlignVertically = true;
         game.stage.backgroundColor = "#1c242e";
         this.start();
-        let text = game.add.text(0 , 0, press);
     },
     start : function(){
         game.state.start("Play");

@@ -105,7 +105,7 @@ class Npc{
 function CloudCollision(_pc){
     console.log("This");
     player.sprite.loadTexture('nakha', 0);
-    game.stage.backgroundColor = "#4c6767";
+    game.stage.backgroundColor = "#7A8E9E";
     player.sprite.scale.x = 0.33;
     player.sprite.scale.y = 0.33;
 }
@@ -176,7 +176,7 @@ var textMessage = new Array(
 , "(그 말을 끝으로, 그는 다시 자신의 할 일에 열중하기 시작했다.)"
 , ""
 , "(그는 창 밖으로 자신의 몸을 던지고 싶었으나,)" // 26
-, "(아쉽게도 그는 '새'가 아니었고, 목적지 또한 몰랐다.)"
+, "(아쉽게도 그는 '새'가 아니었다.)"
 , "('까마귀' 키워드가 해금되었습니다.)"
 , ""
 , "(붉은 집의 문은 굳게 닫혀 있고, 초인종도 보이지 않는다.)" //30
@@ -192,6 +192,8 @@ var textMessage = new Array(
 , "너가 그리던 자유가 바로 코앞에 있어."
 , ""
 , "('벽' 키워드가 '끝' 키워드로 순위가 갱신되었습니다.)" //42
+, ""
+, "(아직 회사에서 처리해야 할 일이 남은 것 같다.)" // 44
 , ""
 )
 
@@ -241,6 +243,8 @@ var play = {
         game.physics.startSystem(Phaser.Physics.ARCADE);
         bg = game.add.sprite(1400, 2280, 'BG');
         bg.scale.x = 2.5; bg.scale.y = 2.5;
+        let bg2 = game.add.sprite(4000, 1355, 'SF');
+        bg2.scale.x = 0.9; bg2.scale.y = 0.9;
         stopTime = game.time.now;
         canJump = true;
         trash = game.add.group();
@@ -253,6 +257,7 @@ var play = {
         let ground2 = platforms.create(3700, 2818, 'ground2');
         let black = platforms.create(3160, 0, 'Black');
         let black2 = platforms.create(4000, 1409, 'Black2');
+        let Exit = game.add.sprite(3900, 1240, 'EXIT');
         ground.body.immovable = true;
         ground2.body.immovable = true;
         black.body.immovable = true;
@@ -275,8 +280,8 @@ var play = {
         h0.body.immovable = true;
         h1.body.immovable = true;
         h2.body.immovable = true;
-        sok = npc.create(3050, 2730, 'SOK_NULL');
-        npc.create(4400, 1315, 'SOK2');
+        sok = npc.create(3050, 2728, 'SOK_NULL');
+        npc.create(4400, 1319, 'SOK2');
         npc.create(340, 1974, 'EV');
         npc.create(450, 1974, 'Table');
         npc.create(600, 1978, 'PeopleSit');
@@ -378,13 +383,16 @@ var play = {
        }
          if(player.sprite.x > 1380 && player.sprite.body.velocity.x > 0 && (fly != 'true' || !talkPeople)){ // 까마귀 올라갓으면
               player.sprite.body.velocity.x = 0;
-              if(textpanel.text.text == ''){
+              if(textpanel.text.text == '' && fly != 'true'){
                 localStorage.setItem('crows',true);
                 textpanel.changeText(26);
               }
+              else if(!talkPeople && textpanel.text.text == ''){
+                textpanel.changeText(44);
+              }
 
          }
-        if(player.sprite.x > 4500 && player.sprite.x < 6000){
+        if(player.sprite.x > 4500 && player.sprite.x < 6000 && player.sprite.y > 1500){
             player.sprite.y = 400;
             player.sprite.x = 6500; 
         }
@@ -395,7 +403,7 @@ var play = {
             crowOn = true;
         }
         if(whiteWayclear == 'true' && !wayOn && sokTalk){
-            player.sprite.y = 1299; player.sprite.x = 4250;
+            player.sprite.y = 1362; player.sprite.x = 4076;
             wayOn= true;
         }
         if(roomescapeclear == 'true' && !sokOn){ // RoomEscape
