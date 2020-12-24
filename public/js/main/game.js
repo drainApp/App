@@ -55,7 +55,7 @@ class TextPanel{
             
             //this.text = game.add.text(game.camera.x+400, 750, textMessage[this.num+1], this.style);
             this.num = this.num+1;
-            if(this.num == 37){
+            if(this.num == 38){
                 sokTalk = true;
             }
             if(textMessage[this.num]=="")
@@ -390,7 +390,7 @@ var play = {
         }
         if(fly == 'true' && !crowOn){
             for(var i =0 ; i< crow.length ; i++){
-                crow[i].sprite.y = 2150 + (i*250);
+                crow[i].sprite.y = 2150 + (i*230);
             }
             crowOn = true;
         }
