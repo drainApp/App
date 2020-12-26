@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded",()=>{
         document.getElementById("wall").innerHTML = "1"
         document.getElementById("wall").style.color='black'
         document.getElementsByTagName('body')[0].style.backgroundColor='#b12a38'
-        t.innerHTML="먼저 환경설정에서 소리 테스트를 진행해주세요"
+        t.innerHTML="먼저 환경설정에서 소리 권한 허용을 진행해주세요"
     }
     if(localStorage.getItem('configComplete') == 'true' && !bgmck){
         bgm.volume = localStorage.getItem('volume');
