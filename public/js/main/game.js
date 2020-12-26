@@ -105,14 +105,15 @@ class Npc{
 function CloudCollision(_pc){
     console.log("This");
     player.sprite.loadTexture('nakha', 0);
-    game.stage.backgroundColor = "#7A8E9E";
+    game.stage.backgroundColor = "#ABC1D3";
+    ground.scale.setTo(0, 0);
     player.sprite.scale.x = 0.33;
     player.sprite.scale.y = 0.33;
 }
 function PondCollision(_pc){
     textpanel.changeText(42);
     localStorage.setItem('end', true);
-    player.sprite.destroy();
+    player.sprite.scale.setTo(0, 0);
 }
 function Npc1Collision (_pc, _npc){
     if(player.talkKey.downDuration(25) && textpanel.text._text == "" && canTalk){
@@ -234,6 +235,7 @@ var sokOn = false;
 let random3;
 var talkPeople = false;
 let pond;
+let ground;
 var fly = localStorage.getItem('fly')
 var roomescapeclear = localStorage.getItem('room')
 var whiteWayclear = localStorage.getItem('whiteWay')
@@ -253,17 +255,17 @@ var play = {
         platforms.enableBody = true;
         pond = game.add.sprite(6120, 2650, 'pond');
         game.physics.enable(pond, Phaser.Physics.ARCADE);
-        let ground = platforms.create(0, 2818, 'ground');
-        let ground2 = platforms.create(3700, 2818, 'ground2');
+        ground = platforms.create(0, 2818, 'ground');
+        // let ground2 = platforms.create(3700, 2818, 'ground2');
         let black = platforms.create(3160, 0, 'Black');
         let black2 = platforms.create(4000, 1409, 'Black2');
         let Exit = game.add.sprite(3900, 1240, 'EXIT');
         ground.body.immovable = true;
-        ground2.body.immovable = true;
+        // ground2.body.immovable = true;
         black.body.immovable = true;
         black2.body.immovable = true;
         ground.scale.setTo(200, 2);
-        ground2.scale.setTo(200, 2);
+        // ground2.scale.setTo(200, 2);
         // game.scale.pageAlignHorizontally = true;
         // game.scale.pageAlignVertically = true;
         game.stage.backgroundColor = "#1c242e";
