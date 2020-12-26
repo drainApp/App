@@ -5,17 +5,17 @@ var music;
 var gameLevel = 0;
 var scoreText;
 var buttons=[];
-var answer = [0, 1, 2, 0, 1];
+var answer = [0, 2, 1, 2, 1];
 var x = 0.583;
 var y = 0.583;
 
 
 var textMessage = new Array( 
     "          그저 직진하십시오.          " //0
-  , "      벡터(1, 0)쪽으로 가십시오.      " //1
-  , "          해를 따라 가십시오.          " //2
-  , "      벡터(0, 1)쪽으로 가십시오.      " //0
-  , "      벡터(-1, 0)쪽으로 가십시오.      "); //1
+    , "          해를 따라 가십시오.          " //2
+  , "      '벽'의 진행 방향으로 가십시오.      " //1
+  , "   까마귀가 보는 방향을 따라 가십시오. " //2
+  , "      벡터(1, 0)쪽으로 가십시오.      "); //1
 
 function buttonClick(_btn){
     var a = -1;
