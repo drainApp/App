@@ -1,7 +1,7 @@
 body {
     margin: 0;
     box-sizing: border-box;
-    background-color: #ebe4e4;
+    background-color: white;
     width: 100vw;
     height: 100vh;
     user-select: none;
@@ -10,4 +10,16 @@ body {
 img{
     filter: brightness(25%);
     width: 100%;
+}
+
+.ending{
+    opacity: 0;
+    font-size: 7em;
+}
+
+.b{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
