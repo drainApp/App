@@ -181,6 +181,7 @@ var searchCheck = setInterval(
             document.getElementById("wall").innerHTML = "▲ 1 벽 (new)!"
             document.getElementById("wall").style.color='black'
             document.getElementsByTagName('body')[0].style.backgroundColor='#b12a38'
+            t.innerHTML=""
         }
         else{
             localStorage.setItem('volume', 0.5);

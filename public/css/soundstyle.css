@@ -1,9 +1,23 @@
+body {
+    margin: 0;
+    box-sizing: border-box;
+    background-color: #ebe4e4;
+    width: 100vw;
+    height:auto;
+    background-image: url('../assets/search/background.png');
+    background-size: cover;
+    overflow-x: hidden;
+    font-size: 1.5em;
+}
+
 .complete{
     font-size: 30px;
     padding: 5px;
+    width: 80vw;
     cursor: pointer;
     border: 3px solid black;
     text-align: center;
+    margin: 10px auto;
 }
 
 .flexbox{
@@ -11,7 +25,16 @@
 }
 
 .effect{
-    padding-right: 1px;
-    padding-left: 2px;
+    padding-right: 1.5px;
+    padding-left: 3px;
     font-weight: bold;
+}
+
+img{
+    padding:2%;
+}
+
+.imgbox{
+    display: flex;
+    flex-direction: column;
 }
