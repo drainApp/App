@@ -4,8 +4,10 @@ body {
     background-color: #ebe4e4;
     width: 100vw;
     height: 100vh;
-    background-image: url('../assets/end/Ending1.png');
-    background-size: cover;
     user-select: none;
     overflow: hidden;
+}
+img{
+    filter: brightness(25%);
+    width: 100%;
 }
