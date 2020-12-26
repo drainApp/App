@@ -11,12 +11,8 @@ btn.addEventListener("click",()=>{
 var bgm = new Audio('');
 var bgm_url = "./assets/search/Ambush_Cut.mp3";
 bgm = new Audio(bgm_url);
-if(localStorage.getItem('configComplete') == 'true')
-    bgm.volume = localStorage.getItem('volume');
-else{
-    bgm.volume = 0.5;
-    localStorage.setItem('volume') = bgm.volume;
-    }
+if(localStorage.getItem('configComplete') != 'true')
+    localStorage.setItem('volume', 0.5);
 bgm.volume = localStorage.getItem('volume');
 bgm.play();
 
