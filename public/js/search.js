@@ -185,7 +185,7 @@ var searchCheck = setInterval(
         }
         else{
             localStorage.setItem('volume', 0.5);
-            t.innerHTML="먼저 환경설정에서 소리 테스트를 진행해주세요"
+            t.innerHTML="먼저 환경설정에서 소리 권한 허용을 진행해주세요"
             document.getElementById("wall").innerHTML = "1"
             document.getElementById("wall").style.color='black'
             document.getElementsByTagName('body')[0].style.backgroundColor='#b12a38'

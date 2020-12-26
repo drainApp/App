@@ -94,6 +94,7 @@ body {
         display: flex;
         width: 100vw;
         height: 100vh;
+        font-style: italic;
         align-items: center;
         justify-content: center;
         color: white;
@@ -115,8 +116,9 @@ body {
 
 .t{
     position: relative;
-    font-size: 2em;
+    font-size:2em;
     color: white;
+    font-style: italic;
     top: 44vh;
     text-align: center;
 }
