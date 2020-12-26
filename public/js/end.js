@@ -1,22 +1,20 @@
 body = document.getElementsByTagName('body')[0]
 var ck=25
 var s
-var flag=false
 var start= function(){
     s = setInterval(function(){
-    if(!flag){
-        ck+=5
-        if(ck==10000)flag=true
-    }
-    // else{ 
-    //     ck-=1
-    //     if(ck==25)flag=false
-    // }
+    if(ck==10000)stop()
+    if(ck<1800)ck+=10
+    else ck+=15
     body.style.filter = "brightness(" + ck+"%)"
     console.log(ck)
 },50)
 }
 start()
+
+stop=function(){
+    clearInterval(s)
+}
 
 
 var bgm = new Audio('');
