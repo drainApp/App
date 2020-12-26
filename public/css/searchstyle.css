@@ -114,9 +114,9 @@ body {
 }
 
 .t{
-    position: absolute;
-    bottom: 50vh;
-    right: 25vw;
+    position: relative;
     font-size: 2em;
     color: white;
+    top: 44vh;
+    text-align: center;
 }
