@@ -111,3 +111,10 @@ body {
         font-size: 18px;
     }
 }
+
+.t{
+    position: absolute;
+    bottom: 30vh;
+    right: 15vw;
+    font-size: 2em;
+}

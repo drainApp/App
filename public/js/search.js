@@ -1,6 +1,6 @@
 var input = document.getElementById('searchbar')
 var btn = document.getElementsByClassName('b')[0]
-
+var t = document.getElementsByClassName('t')[0]
 
 input.focus()
 
@@ -11,10 +11,10 @@ btn.addEventListener("click",()=>{
 var bgm = new Audio('');
 var bgm_url = "./assets/search/Ambush_Cut.mp3";
 bgm = new Audio(bgm_url);
-if(localStorage.getItem('configComplete') != 'true')
-    localStorage.setItem('volume', 0.5);
-bgm.volume = localStorage.getItem('volume');
-bgm.play();
+if(localStorage.getItem('configComplete') == 'true'){
+    bgm.volume = localStorage.getItem('volume');
+    bgm.play();
+}
 
 function search(){
 var input_text = input.value
@@ -114,6 +114,7 @@ document.addEventListener("DOMContentLoaded",()=>{
         document.getElementById("wall").innerHTML = "▲ 1 벽 (new)!"
         document.getElementById("wall").style.color='black'
         document.getElementsByTagName('body')[0].style.backgroundColor='#b12a38'
+        t.innerHTML=""
     }
     else{
         document.getElementById("wall").innerHTML = "1"
@@ -174,6 +175,7 @@ var searchCheck = setInterval(
         else if(localStorage.getItem('configComplete') == 'true'){
             document.getElementById("wall").innerHTML = "▲ 1 벽 (new)!"
             document.getElementById("wall").style.color='black'
+            t.innerHTML=""
             document.getElementsByTagName('body')[0].style.backgroundColor='#b12a38'
         }
         else{
