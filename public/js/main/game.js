@@ -2,6 +2,7 @@ var game = new Phaser.Game(1100, 700, Phaser.AUTO,document.getElementById("GameD
 var text;
 var score;
 var scoreText;
+var endGame = false;;
 
 class Player {
     constructor(){
@@ -40,53 +41,55 @@ class TextPanel{
         this.style2 = { font: "7px Arial", fill: "#909099", wordWrap: true, wordWrapWidth: this.sprite.width, align: "center" };
         this.text = game.add.text(game.camera.x+600, 750, textMessage[a], this.style);
         if(this.num == 42)
-            this.text2 = game.add.text(game.camera.x+880, 800, "Back to 'Search'..", this.style);
+            this.text2 = game.add.text(game.camera.x+200, 800, "Back to 'Search'..", this.style);
         else
-            this.text2 = game.add.text(game.camera.x+900, 800, 'press Z..', this.style);
+            this.text2 = game.add.text(game.camera.x+950, 800, 'press Z..', this.style);
         this.text.anchor.set(0.5);
         this.num = a;
     }
     destructor(){
-        //this.text.destroy();
-        console.log("dest");
-        if(textMessage[this.num]!="")
-        {
-            this.text.setText(textMessage[this.num+1]);
+            //this.text.destroy();
+            console.log("dest");
+
+            if(textMessage[this.num]!="")
+            {
+                this.text.setText(textMessage[this.num+1]);
             
-            //this.text = game.add.text(game.camera.x+400, 750, textMessage[this.num+1], this.style);
-            this.num = this.num+1;
-            if(this.num == 38){
-                sokTalk = true;
-            }
-            if(textMessage[this.num]=="")
-                {
-                    console.log("check");
-                    canTalk= false;
-                    this.text2.text = '';
-                    textpanel.sprite.scale.x = 0;
-                    textpanel.sprite.scale.y = 0;
+                //this.text = game.add.text(game.camera.x+400, 750, textMessage[this.num+1], this.style);
+                this.num = this.num+1;
+                if(this.num == 38){
+                    sokTalk = true;
+                }
+                if(textMessage[this.num]=="")
+                    {
+                        if(this.num != 43){
+                        console.log("check");
+                        canTalk= false;
+                        this.text2.text = '';
+                        textpanel.sprite.scale.x = 0;
+                        textpanel.sprite.scale.y = 0;
+                        }
+                    }
+                else{
+                    if(this.num == 42){
+                        this.text2.text = "Back to 'Search'..";
+                    }
+
+                    else{
+                        this.text2.text = 'press Z..';
+                    }
+                    }
                 }
             else{
-                if(this.num == 42)
-                    this.text2.text = "Back to 'Search'..";
-                else
-                    this.text2.text = 'press Z..';
-            }
-        }
-        else{
-            canTalk = true;
-            
-        }
-
+                canTalk = true;
+                }
     }
     changeText(n){
         if(n == 42){
             this.text2.text = "Back to 'Search'..";
-            this.text2.x = game.camera.x + 880;
         }
         else{
             this.text2.text = 'press Z..';
-            this.text2.x = game.camera.x + 900;
         }
         textpanel.sprite.scale.x = 1;
         textpanel.sprite.scale.y = 1;
@@ -111,9 +114,13 @@ function CloudCollision(_pc){
     player.sprite.scale.y = 0.33;
 }
 function PondCollision(_pc){
-    textpanel.changeText(42);
-    localStorage.setItem('end', true);
-    player.sprite.scale.setTo(0, 0);
+    if(textpanel.num != 42){
+        textpanel.changeText(42);
+        localStorage.setItem('end', true);
+        player.sprite.scale.setTo(0, 0);
+        player.sprite.body.gravity = 0;
+        endGame = true;
+    }
 }
 function Npc1Collision (_pc, _npc){
     if(player.talkKey.downDuration(25) && textpanel.text._text == "" && canTalk){
@@ -255,6 +262,7 @@ var play = {
         platforms.enableBody = true;
         pond = game.add.sprite(6120, 2650, 'pond');
         game.physics.enable(pond, Phaser.Physics.ARCADE);
+        pond.body.immovable = true;
         ground = platforms.create(0, 2818, 'ground');
         // let ground2 = platforms.create(3700, 2818, 'ground2');
         let black = platforms.create(3160, 0, 'Black');
@@ -361,7 +369,10 @@ var play = {
        player.update();
        textpanel.sprite.x = game.camera.x;
        textpanel.text.x = game.camera.x+600;
-       textpanel.text2.x = game.camera.x+950;
+       if(textpanel.text2.text == 'press Z..')
+            textpanel.text2.x = game.camera.x+950;
+        else
+            textpanel.text2.x = game.camera.x+880;
        textpanel.sprite.y = game.camera.y + 500;
        textpanel.text.y = game.camera.y + 580;
        textpanel.text2.y = game.camera.y + 630;
@@ -385,7 +396,7 @@ var play = {
         //     player.sprite.body.velocity.y = -400;
         //     }
        //game.input.activePointer.leftButton.isDown
-       if(player.talkKey.downDuration(25)&& lastTextTime+50 < game.time.now){
+       if(player.talkKey.downDuration(25)&& lastTextTime+50 < game.time.now && endGame == false){
             lastTextTime = game.time.now;
             textpanel.destructor();
        }
