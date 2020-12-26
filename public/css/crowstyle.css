@@ -28,6 +28,7 @@ body{
     position: absolute;
     top:33vh;
     left:14vw;
+    transition: 0.5s;
 }
 
 .btn{

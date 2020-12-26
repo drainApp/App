@@ -114,7 +114,8 @@ body {
 
 .t{
     position: absolute;
-    bottom: 30vh;
-    right: 15vw;
+    bottom: 50vh;
+    right: 25vw;
     font-size: 2em;
+    color: white;
 }

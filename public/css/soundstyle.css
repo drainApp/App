@@ -1,0 +1,17 @@
+.complete{
+    font-size: 30px;
+    padding: 5px;
+    cursor: pointer;
+    border: 3px solid black;
+    text-align: center;
+}
+
+.flexbox{
+    display: flex;
+}
+
+.effect{
+    padding-right: 1px;
+    padding-left: 2px;
+    font-weight: bold;
+}

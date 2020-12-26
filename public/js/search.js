@@ -8,13 +8,11 @@ btn.addEventListener("click",()=>{
     search()
 })
 
-var bgm = new Audio('');
-var bgm_url = "./assets/search/Ambush_Cut.mp3";
-bgm = new Audio(bgm_url);
-if(localStorage.getItem('configComplete') == 'true'){
-    bgm.volume = localStorage.getItem('volume');
-    bgm.play();
+var go = (e) => {
+    if (e.keyCode == 13) btn.click()
 }
+input.addEventListener("keypress",go)
+
 
 function search(){
 var input_text = input.value
@@ -61,11 +59,12 @@ var input_text = input.value
 
 }
 
-var go = (e) => {
-    if (e.keyCode == 13) btn.click()
-}
-input.addEventListener("keypress",go)
 
+
+var bgm = new Audio('');
+var bgmck=false
+var bgm_url = "./assets/search/Ambush_Cut.mp3";
+bgm = new Audio(bgm_url);
 
 document.addEventListener("DOMContentLoaded",()=>{
     if(localStorage.getItem('way') == 'true'){
@@ -120,6 +119,12 @@ document.addEventListener("DOMContentLoaded",()=>{
         document.getElementById("wall").innerHTML = "1"
         document.getElementById("wall").style.color='black'
         document.getElementsByTagName('body')[0].style.backgroundColor='#b12a38'
+        t.innerHTML="먼저 환경설정에서 소리 테스트를 진행해주세요"
+    }
+    if(localStorage.getItem('configComplete') == 'true' && !bgmck){
+        bgm.volume = localStorage.getItem('volume');
+        bgm.play();
+        bgmck = true
     }
 });
 
@@ -175,14 +180,20 @@ var searchCheck = setInterval(
         else if(localStorage.getItem('configComplete') == 'true'){
             document.getElementById("wall").innerHTML = "▲ 1 벽 (new)!"
             document.getElementById("wall").style.color='black'
-            t.innerHTML=""
             document.getElementsByTagName('body')[0].style.backgroundColor='#b12a38'
         }
         else{
             localStorage.setItem('volume', 0.5);
+            t.innerHTML="먼저 환경설정에서 소리 테스트를 진행해주세요"
             document.getElementById("wall").innerHTML = "1"
             document.getElementById("wall").style.color='black'
             document.getElementsByTagName('body')[0].style.backgroundColor='#b12a38'
+        }
+
+        if(localStorage.getItem('configComplete') == 'true' && !bgmck){
+            bgm.volume = localStorage.getItem('volume');
+            bgm.play();
+            bgmck = true
         }
     }, 500
 );

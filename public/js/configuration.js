@@ -5,7 +5,6 @@ var slash = document.getElementById('slash')
 var Initializationbtn = document.getElementById('Initialization')
 var soundbtn = document.getElementById('left')
             
-localStorage.setItem("configComplete", true);
 slider.value = localStorage.getItem("volume", 5) * 10;
 localStorage.setItem("volume", this.value * 0.1);
 
@@ -31,15 +30,6 @@ Initializationbtn.addEventListener("click",
 )
 function Initializationevent(){
     if(confirm("주의! 전체 진행 내역을 초기화합니다")){
-    localStorage.setItem('end', false)
-    localStorage.setItem('redRoof',false)
-    localStorage.setItem('way',false)
-    localStorage.setItem('crows',false)
-    
-    localStorage.setItem('fly',false)
-    localStorage.setItem('room',false)
-    localStorage.setItem('whiteWay',false) 
-    localStorage.setItem('configComplete',false)
-    localStorage.setItem('wall',false)
-    }
+    localStorage.clear()
+}   
 }
