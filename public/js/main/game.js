@@ -294,12 +294,16 @@ var play = {
         crow[1]= new Crow(1680, 200);
         crow[2]= new Crow(1810, 200);
         game.physics.enable(npc, Phaser.Physics.ARCADE);
-        for(let i = 0; i< npc.lengteh ; i++){
+        for(let i = 0; i< npc.length ; i++){
             npc.children[i].body.immovable = true;
             npc.children[i].body.checkCollision.right = false;
             npc.children[i].body.checkCollision.left = false;
             npc.children[i].body.checkCollision.down = false;
             npc.children[i].body.checkCollision.up = false;
+        }
+        for(let i = 0; i< crow.length ; i++){
+            crow[i].sprite.body.checkCollision.right = false;
+            crow[i].sprite.body.checkCollision.left = false;
         }
         npc.enableBody = true;
         player = new Player();
@@ -334,6 +338,8 @@ var play = {
         {
         console.log("music on");
         music = game.add.audio('bgm');
+        if(localStorage.getItem("configComplete") != true)
+            localStorage.setItem('volume', 0.5);
         music.volume = localStorage.getItem('volume', 0.5);
         music.loop = true;
         music.play();

@@ -114,6 +114,7 @@ function USBOn(_usb, _pc){
     console.log("ON");
     _pc.loadTexture('PC_USB', 0);
     Monitor.sprite.loadTexture('Monitor_Die', 0);
+    game.add.text(470, 230, 'INSTAGRAM : ', { font: "24px Arial", fill: "#ffffff", align: "center"});
     game.add.text(470, 280, '@sokisinside', { font: "24px Arial", fill: "#ffffff", align: "center"});
     _usb.destroy();
 }
@@ -238,7 +239,7 @@ function keyPress(char) {
             text.setText(words);
             if(words == "4143"){
                 GoldGo.sprite.loadTexture('GoldGo_Open');
-                f_items[1] = new DontMoveFurniture(3140, 453, "KEY");
+                f_items[1] = new DontMoveFurniture(3140, 420, "KEY");
                 f_items[1].sprite.inputEnabled = true;
                 f_items[1].sprite.events.onInputDown.add(getItem, this);
                 f_items[1].sprite.scale.x = 0.18;
@@ -370,6 +371,8 @@ var play = {
         {
         console.log("music on");
         music = game.add.audio('bgm');
+        if(localStorage.getItem("configComplete") != true)
+            localStorage.setItem('volume', 0.5);
         music.volume = localStorage.getItem('volume', 0.5);
         music.loop = true;
         music.play();
