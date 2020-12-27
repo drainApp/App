@@ -103,9 +103,12 @@ var play = {
         {
         console.log("music on");
         music = game.add.audio('bgm');
-        if(localStorage.getItem("configComplete") != true)
+        if(localStorage.getItem("configComplete") != 'true'){
             localStorage.setItem('volume', 0.5);
-        music.volume = localStorage.getItem('volume', 0.5);
+        }
+        console.log(localStorage.getItem('volume'));
+        music.volume = localStorage.getItem('volume');
+
         music.loop = true;
         music.play();
         }

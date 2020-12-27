@@ -123,8 +123,9 @@ document.addEventListener("DOMContentLoaded",()=>{
     }
     if(localStorage.getItem('configComplete') == 'true' && !bgmck){
         bgm.volume = localStorage.getItem('volume');
+        console.log(bgm.volume);
         bgm.play();
-        bgmck = true
+        bgmck = true;
     }
 });
 
@@ -184,7 +185,7 @@ var searchCheck = setInterval(
             t.innerHTML=""
         }
         else{
-            localStorage.setItem('volume', 0.5);
+            // localStorage.setItem('volume', 0.5);
             t.innerHTML="먼저 환경설정에서 소리 권한 허용을 진행해주세요"
             document.getElementById("wall").innerHTML = "1"
             document.getElementById("wall").style.color='black'
