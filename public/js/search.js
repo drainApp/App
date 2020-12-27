@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded",()=>{
         t.innerHTML=""
     }
     else{
-        localStorage.setItem('volume', 0.5);
+        //localStorage.setItem('volume', 0.5);
         document.getElementById("wall").innerHTML = "1"
         document.getElementById("wall").style.color='black'
         document.getElementsByTagName('body')[0].style.backgroundColor='#b12a38'
